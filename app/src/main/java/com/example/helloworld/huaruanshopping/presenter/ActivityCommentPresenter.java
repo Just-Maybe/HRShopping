@@ -67,7 +67,7 @@ public class ActivityCommentPresenter implements IActivityCommentBiz {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Log.d(TAG, "onError: ");
                     }
 
                     @Override
@@ -78,7 +78,7 @@ public class ActivityCommentPresenter implements IActivityCommentBiz {
     }
 
     @Override
-    public void postAppendComment(int comment_id, int pid, int uid, String append_comment,List<String> imgList) {
+    public void postAppendComment(int comment_id, int pid, int uid, String append_comment, List<String> imgList) {
 //        Log.d(TAG, "onNext: "+comment_id+pid+uid+append_comment);
         MultipartBody.Builder builder = new MultipartBody.Builder();
         RequestBody requestFile;
@@ -94,7 +94,7 @@ public class ActivityCommentPresenter implements IActivityCommentBiz {
         }
         List<MultipartBody.Part> parts = builder.build().parts();
 
-        Observable<Response> observable = HttpMethods.getInstance().getProductDescribeService().postAppendComment(comment_id, pid, uid, append_comment,parts);
+        Observable<Response> observable = HttpMethods.getInstance().getProductDescribeService().postAppendComment(comment_id, pid, uid, append_comment, parts);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Response>() {

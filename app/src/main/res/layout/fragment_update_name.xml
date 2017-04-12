@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/userNameEdit"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/update_info_bg"
+        android:hint="输入昵称"
+        android:inputType="text"
+        android:maxLength="10"
+        android:maxLines="1"
+        android:minEms="5"
+        android:textColor="@color/colorConfirmTotal"
+        android:textColorHint="@color/colorConfirmTotal"
+        android:textSize="15dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:text="3-5个汉字，或3-10个字节（中文，英文，数字及下划线(_)）"
+        android:textColor="@color/ColortabText"
+        android:textSize="13dp" />
+
+    <TextView
+        android:id="@+id/saveInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/post_comment_btn_bg_selector"
+        android:gravity="center"
+        android:text="保存"
+        android:textColor="#fff"
+        android:textSize="16dp" />
+</LinearLayout>

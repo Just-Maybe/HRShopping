@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.helloworld.huaruanshopping">
+
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".application.IApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.WithoutActionBar">
+        <!--@style/AppTheme.WithoutActionBar-->
+        <activity
+            android:name=".acitiviy.MainActivity"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".acitiviy.ProductDescribeActivity" />
+        <activity android:name=".acitiviy.OrderActivity" />
+        <activity android:name=".acitiviy.FindAllOrderActivity" />
+        <activity android:name=".acitiviy.updateInfoActivity" />
+        <activity
+            android:name=".acitiviy.CommentActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity android:name=".acitiviy.PayTestActivity" />
+        <activity android:name="cn.bmob.pay.v3.act.PayAct" />
+    </application>
+
+</manifest>

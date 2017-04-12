@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">HuaruanShopping</string>
+    <string name="productDetail">商品详情</string>
+    <string name="total">总价:</string>
+    <string name="joinToCar">加入到购物车</string>
+</resources>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrice"
+        android:elevation="1dp"
+        android:fitsSystemWindows="true">
+
+        <RelativeLayout
+            android:id="@+id/searhLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/searchIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/search_32" />
+
+            <TextView
+                android:id="@+id/searchTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="主页"
+                android:textColor="#fff"
+                android:textSize="16dp"
+                />
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <View
+        android:id="@+id/separation"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@id/toolbar"
+        android:background="@color/colorseparation" />
+
+    <!--app:tabIndicatorColor="@color/white"                 // 下方滚动的下划线颜色-->
+    <!--app:tabSelectedTextColor="@color/gray"               // tab被选中后，文字的颜色-->
+    <!--app:tabTextColor="@color/white"                      // tab默认的文字颜色-->
+    <FrameLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomNav"
+        android:layout_below="@+id/separation"
+        android:background="#fff"></FrameLayout>
+
+    <!--下栏菜单-->
+    <com.ashokvarma.bottomnavigation.BottomNavigationBar
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        app:bnbMode="mode_fixed"
+        app:itemIconTint="@color/bottom_nav_icon_bg"
+        app:itemTextColor="@color/colorPrimaryFont"
+        app:menu="@menu/menu_bottom_nav">
+
+    </com.ashokvarma.bottomnavigation.BottomNavigationBar>
+
+</RelativeLayout>

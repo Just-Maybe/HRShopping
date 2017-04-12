@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f5f5f5">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/back_black_32" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_centerInParent="true"
+                app:tabGravity="center"
+                app:tabMode="fixed"
+
+                app:tabSelectedTextColor="@color/colorPrimaryFont"
+                app:tabTextColor="@color/colorConfirmTotal">
+
+
+            </android.support.design.widget.TabLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <include
+        android:id="@+id/divider"
+        layout="@layout/mine_info_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@+id/toolbar" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/contentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/car"
+        android:layout_below="@+id/divider" />
+
+    <!--加入到购物车-->
+    <LinearLayout
+        android:id="@+id/car"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:clipChildren="false"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:clipChildren="false"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/carBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:drawableTop="@drawable/black_car_32"
+                android:text="购物车"
+                android:textColor="@color/colorDescribeName"
+                android:textSize="10dp" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/addToCar"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="3"
+            android:background="@color/colorPrimaryFont"
+            android:clickable="true"
+            android:elevation="5dp"
+            android:gravity="center"
+            android:text="@string/joinToCar"
+            android:textColor="#ffff"
+            android:textSize="15dp" />
+    </LinearLayout>
+</RelativeLayout>

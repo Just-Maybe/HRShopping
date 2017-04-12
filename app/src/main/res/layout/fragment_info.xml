@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/confirm_divider" />
+            <!--头像-->
+            <RelativeLayout
+                android:id="@+id/headImgLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:text="头像"
+                    android:textSize="15dp" />
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/headImg"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/headimgArrow"
+                    android:background="@drawable/my_head_100"
+                    android:scaleType="center"
+                    app:riv_corner_radius="100dp" />
+
+                <ImageView
+                    android:id="@+id/headimgArrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="12dp"
+                    android:background="@drawable/grey_right_16" />
+            </RelativeLayout>
+
+            <include layout="@layout/confirm_divider" />
+            <!--订单-->
+
+            <RelativeLayout
+                android:id="@+id/findAllOrderLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:text="我的订单"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="12dp"
+                    android:drawableRight="@drawable/grey_right_16"
+                    android:text="查看全部订单"
+                    android:textColor="@color/ColortabText"
+                    android:textSize="13dp" />
+            </RelativeLayout>
+
+
+            <include layout="@layout/mine_info_divider" />
+            <!--更改昵称-->
+            <RelativeLayout
+                android:id="@+id/updateNameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:text="昵称"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/userName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="12dp"
+                    android:drawableRight="@drawable/grey_right_16"
+                    android:text="Dendi"
+                    android:textColor="@color/ColortabText"
+                    android:textSize="13dp" />
+            </RelativeLayout>
+
+            <include layout="@layout/mine_info_divider" />
+            <!--修改密码-->
+            <RelativeLayout
+                android:id="@+id/updatePasswordLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:text="修改密码"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="12dp"
+                    android:background="@drawable/grey_right_16"
+                    android:textSize="13dp" />
+            </RelativeLayout>
+
+            <include layout="@layout/mine_info_divider" />
+
+            <!--添加收货地址-->
+            <RelativeLayout
+                android:id="@+id/updateAddressLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:text="地址管理"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="12dp"
+                    android:background="@drawable/grey_right_16"
+                    android:textSize="13dp" />
+            </RelativeLayout>
+
+            <include layout="@layout/mine_info_divider" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

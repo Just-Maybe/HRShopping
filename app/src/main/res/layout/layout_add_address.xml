@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/nameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="收货人:" />
+
+        <EditText
+            android:id="@+id/nameEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/nameTv"
+            android:background="@drawable/update_info_bg"
+            android:inputType="text"
+            android:maxLength="10"
+            android:maxLines="1"
+            android:textColor="@color/colorConfirmTotal"
+            android:textColorHint="@color/colorConfirmTotal"
+            android:textSize="13dp" />
+
+        <include
+            layout="@layout/mine_info_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true" />
+
+    </RelativeLayout>
+
+    <!--手机号码:-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/phoneTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="手机号码:" />
+
+        <EditText
+            android:id="@+id/phoneEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/phoneTv"
+            android:background="@drawable/update_info_bg"
+            android:inputType="phone"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:textColor="@color/colorConfirmTotal"
+            android:textColorHint="@color/colorConfirmTotal"
+            android:textSize="13dp" />
+
+        <include
+            layout="@layout/mine_info_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+
+
+    <!--地址-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/addressTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="详细地址:" />
+
+        <EditText
+            android:id="@+id/addressEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/addressTv"
+            android:background="@drawable/update_info_bg"
+            android:inputType="textMultiLine"
+            android:maxLength="35"
+            android:maxLines="2"
+            android:textColor="@color/colorConfirmTotal"
+            android:textColorHint="@color/colorConfirmTotal"
+            android:textSize="13dp" />
+
+        <include
+            layout="@layout/mine_info_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_below="@+id/addressEdit" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/saveInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/post_comment_btn_bg_selector"
+        android:gravity="center"
+        android:text="保存"
+        android:textColor="#fff"
+        android:textSize="16dp" />
+</LinearLayout>

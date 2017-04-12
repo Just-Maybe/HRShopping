@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menuHome"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/blue_home_32"
+        android:title="首页" />
+    <item
+        android:id="@+id/menuSort"
+        android:enabled="true"
+        android:icon="@drawable/blue_sort_32"
+        android:title="分类" />
+    <item
+        android:id="@+id/menuHot"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/blue_hot_32"
+        android:title="热卖" />
+    <item
+        android:id="@+id/menuCar"
+        android:enabled="true"
+        android:icon="@drawable/blue_car_32"
+        android:title="购物车" />
+    <item
+        android:id="@+id/menuMine"
+        android:enabled="true"
+        android:icon="@drawable/blue_my_32"
+        android:title="我的" />
+</menu>

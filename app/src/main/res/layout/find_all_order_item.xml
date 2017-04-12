@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:orientation="vertical">
+
+
+    <!--状态 总价-->
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="65dp">
+
+        <TextView
+            android:id="@+id/orderNOTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:text="订单号:"
+            android:textColor="@color/colorConfirmTotal" />
+
+        <TextView
+            android:id="@+id/orderNO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/orderNOTv"
+            android:text="123123123"
+            android:textColor="@color/colorDescribeName" />
+
+        <TextView
+            android:id="@+id/orderStatusTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/orderNOTv"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="12dp"
+            android:text="状    态:"
+            android:textColor="@color/colorConfirmTotal" />
+
+        <TextView
+            android:id="@+id/orderStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/orderNOTv"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="12dp"
+            android:layout_toRightOf="@id/orderStatusTv"
+            android:text="订单完成"
+            android:textColor="@color/colorOrderItemStatus" />
+
+        <TextView
+            android:id="@+id/orderTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/orderNOTv"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="12dp"
+            android:text="￥88.00"
+            android:textColor="@color/colorDeleteCarItem" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/orderNOTv"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="12dp"
+            android:layout_toLeftOf="@id/orderTotal"
+            android:text="总价:"
+            android:textColor="@color/colorConfirmTotal" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorOrderDivider" />
+
+    <LinearLayout
+        android:id="@+id/orderContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorOrderDivider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:gravity="right">
+
+        <TextView
+            android:id="@+id/orderImmediately"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/delete_cancel_order_bg"
+            android:text="去支付"
+            android:textColor="@color/colorConfirmTotal"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/cancelOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/delete_cancel_order_bg"
+            android:text="取消订单"
+            android:textColor="@color/colorConfirmTotal"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/deleteOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/delete_cancel_order_bg"
+            android:text="删除订单"
+            android:textColor="@color/colorConfirmTotal"
+            android:textSize="13dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorOrderDivider" />
+</LinearLayout>

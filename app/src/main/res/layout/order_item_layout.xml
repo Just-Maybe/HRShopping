@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <ImageView
+            android:id="@+id/orderItemImg"
+            android:layout_width="80dp"
+            android:layout_height="90dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp" />
+
+        <TextView
+            android:id="@+id/orderItemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/orderItemImg"
+            android:text="富足(经典)"
+            android:textColor="@color/colorConfirmTotal" />
+
+        <TextView
+            android:id="@+id/orderItemSort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/orderItemName"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@id/orderItemImg"
+            android:text="分类1"
+            android:textColor="@color/colorseparation" />
+
+        <TextView
+            android:id="@+id/orderItemNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/orderItemName"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@+id/orderItemSort"
+            android:text="5"
+            android:textColor="@color/colorConfirmTotal" />
+
+
+        <TextView
+            android:id="@+id/orderComment"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/comment_btn_bg"
+            android:gravity="center"
+            android:text="去评论"
+            android:textColor="@color/colorPrimary" />
+
+        <TextView
+            android:layout_below="@+id/orderComment"
+            android:id="@+id/orderItemTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="10dp"
+            android:text="200.0"
+            android:textColor="@color/colorDescribeName" />
+    </RelativeLayout>
+</LinearLayout>

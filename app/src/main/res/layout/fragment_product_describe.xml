@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:layout_marginBottom="5dp"
+    android:scrollbars="none">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff">
+        <!--轮播图-->
+        <com.youth.banner.Banner
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_alignParentTop="true">
+
+        </com.youth.banner.Banner>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/banner"
+            android:clipChildren="false"
+            android:orientation="vertical">
+            <!--产品名称-->
+            <TextView
+                android:id="@+id/describeName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/colorDescribeName"
+                android:textSize="20dp" />
+
+            <!--产品价格-->
+            <TextView
+                android:id="@+id/describePrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/colorPrimaryFont"
+                android:textSize="25dp" />
+
+            <!--分类-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="类别:"
+                    android:textSize="15dp" />
+                <!--分类组-->
+                <com.example.helloworld.huaruanshopping.view.RadioGroupEx
+                    android:id="@+id/sortGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </com.example.helloworld.huaruanshopping.view.RadioGroupEx>
+            </LinearLayout>
+            <!--添加或减少-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="25dp"
+                android:clipChildren="false"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:text="数量:"
+                    android:textSize="15dp" />
+
+                <ImageButton
+                    android:id="@+id/addBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/add_reduce_btn_bg"
+                    android:clickable="true"
+                    android:src="@drawable/add_16" />
+
+                <TextView
+                    android:id="@+id/carItemNum"
+                    android:layout_width="40dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/add_reduce_text_bg"
+                    android:gravity="center"
+                    android:text="2"
+                    android:textColor="@color/colorPrimaryFont"
+                    android:textSize="16dp" />
+
+                <ImageButton
+                    android:id="@+id/reduceBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/add_reduce_btn_bg"
+                    android:clickable="true"
+                    android:src="@drawable/reduce_16" />
+            </LinearLayout>
+            <!--商品介绍-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/productDetail"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/describeRemark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:text="阿斯大声打阿登省阿斯顿阿斯大大声打阿斯大声阿斯声打是打算顿阿斯大大声打阿斯大声阿斯声打是打算打算顿阿斯大大声打阿斯大声阿斯声打是打算打算顿阿斯大大声打阿斯大声阿斯声打是打算打算顿阿斯大大声打阿斯大声阿斯声打是打算打算顿阿斯大大声打阿斯大声阿斯声打是打算打算顿阿斯大大声打阿斯大声阿斯声打是打算打算顿阿斯大大声打阿斯大声阿斯声打是打算打算顿阿斯大大声打阿斯大声阿斯声打是打算打算顿阿斯大大声打阿斯大声阿斯声打是打算打算顿阿斯大大声打阿斯大声阿斯声打是打算打算打算打算的阿斯"
+                android:textColor="@color/ColortabText"
+                android:textSize="14dp" />
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>
+

@@ -21,21 +21,21 @@ import retrofit2.http.Query;
  */
 
 public interface CartService {
-    ///    http://119.29.24.119/api/carts/user?id=1&token=532a8a18b75079da0c48414014600600d64737f36e330997
+    ///    /api/carts/user?id=1&token=532a8a18b75079da0c48414014600600d64737f36e330997
     @GET("api/carts/user")
     Observable<CartBean> getListCart(@Query("id") int id, @Query("token") String token);
 
     //    修改购物车商品数量(数量，购物项id)
-//    http://119.29.24.119/api/carts/{id}?number=1
+//    /api/carts/{id}?number=1
     @PUT("api/carts/{id}")
     Observable<Response> updateCart(@Path("id") int id, @Query("number") int number);
 
     //    删除购物车Item
-//    http://119.29.24.119/api/carts/{id}
+//    /api/carts/{id}
     @DELETE("api/carts/{id}")
     Observable<Response> deleteCartItem(@Path("id") int id);
 
-//    http://119.29.24.119/cart_placeOrderImmediately.action?ptids=1,2,3&numbers=1,2,1
+//   /cart_placeOrderImmediately.action?ptids=1,2,3&numbers=1,2,1
 // &suserid=1&token=532a8a18b75079da0c48414014600600d64737f36e330997
 
     //    判断是否有库存

@@ -31,13 +31,15 @@ public class FindAllOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private List<DataBean> orderList;
     private final static String TAG = "111";
     ActivityFindAllOrderPresenter presenter = new ActivityFindAllOrderPresenter();
-    public cancelItemListen listener;
+    private cancelItemListen listener;
     private String token = "532a8a18b75079da0c48414014600600d64737f36e330997";
     private int id = 1;
+    int num = 0;
 
     public FindAllOrderAdapter(Context context, List<DataBean> orderList) {
         mContext = context;
         this.orderList = orderList;
+        Log.d(TAG, "FindAllOrderAdapter: " + orderList.size());
     }
 
     @Override
@@ -53,7 +55,7 @@ public class FindAllOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             ((OrderItem) holder).status.setText(orderList.get(position).getStatus().getStatus());
             ((OrderItem) holder).total.setText("￥ " + orderList.get(position).getTotal());
             ((OrderItem) holder).NO.setText(orderList.get(position).getId());
-            Log.d(TAG, "onBindViewHolder: id" + orderList.get(position).getStatus().getId() + "  " + position);
+//            Log.d(TAG, "onBindViewHolder: id" + orderList.get(position).getStatus().getId() + "  " + position);
             if (orderList.get(position).getStatus().getId() == 2 || orderList.get(position).getStatus().getId() == 4) {
                 ((OrderItem) holder).deleteOrder.setVisibility(View.VISIBLE);
                 ((OrderItem) holder).cancelOrder.setVisibility(View.GONE);
@@ -75,26 +77,39 @@ public class FindAllOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     cancelItem(position);
                 }
             });
-//            ((OrderItem) holder).orderComment.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Intent intent = new Intent(mContext.getApplicationContext(), CommentActivity.class);
-//                    mContext.startActivity(intent);
-//                }
-//            });
             DataBean.SorderSetBean Bean;
             for (int i = 0; i < orderList.get(position).getSorderSet().size(); i++) {
                 Bean = orderList.get(position).getSorderSet().get(i);
-                Log.d(TAG, "onBindViewHolder:position " + position + " i " + i);
-                Log.d(TAG, "onBindViewHolder: " + Bean.getProtype().getName() + Bean.getProtype().getPic() + Bean.getPrice());
+//                Log.d(TAG, "onBindViewHolder:position " + position + " i " + i);
+//                Log.d(TAG, "onBindViewHolder: " + Bean.getProtype().getName() + Bean.getProtype().getPic() + Bean.getPrice());
                 //半段是否为空，空则添加子View 否则不需要添加
-                if (((OrderItem) holder).contentLayout.getChildCount() < orderList.get(position).getSorderSet().size())
-                    ((OrderItem) holder).contentLayout.addView(setItemView(((OrderItem) holder).contentLayout, Bean.getProtype().getPic(), Bean.getProtype().getProduct().getName(), Bean.getNumber(), Bean.getPrice(), Bean.getProtype().getName(), position));
+                if (((OrderItem) holder).contentLayout.getChildCount() < orderList.get(position).getSorderSet().size()) {
+
+                    ((OrderItem) holder).contentLayout.addView(setItemView(((OrderItem) holder).contentLayout,
+                            Bean.getProtype().getPic(),
+                            Bean.getProtype().getProduct().getName(),
+                            Bean.getNumber(), Bean.getPrice(),
+                            Bean.getProtype().getName(),
+                            Bean.getComm_flag()));
+                    Log.d(TAG, "onBindViewHolder: " + orderList.get(position).getStatus().getId());
+//                    Log.d(TAG, "onBindViewHolder: " + num++);
+                }
             }
         }
     }
 
-    public View setItemView(ViewGroup contentLayout, String imgUrl, String Name, int Num, double Total, String sort, int position) {
+    /**
+     * @param contentLayout 父布局
+     * @param imgUrl        商品图片
+     * @param Name          商品名称
+     * @param Num           商品数量
+     * @param Total         商品总价
+     * @param sort          商品分类
+     * @param getComm_flag  订单状态id
+     * @return
+     */
+    private View setItemView(ViewGroup contentLayout, String imgUrl, String Name, int Num, double Total, String sort, int getComm_flag) {
+        Log.d(TAG, "setItemView: " + getComm_flag);
         View itemView = LayoutInflater.from(mContext).inflate(R.layout.order_item_layout, contentLayout, false);
         ImageView img = (ImageView) itemView.findViewById(R.id.orderItemImg);
         TextView itemName = (TextView) itemView.findViewById(R.id.orderItemName);
@@ -102,6 +117,13 @@ public class FindAllOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         TextView itemTotal = (TextView) itemView.findViewById(R.id.orderItemTotal);
         TextView itemSort = (TextView) itemView.findViewById(R.id.orderItemSort);
         TextView orderComment = (TextView) itemView.findViewById(R.id.orderComment);
+        if (getComm_flag == 1) {
+            orderComment.setText("评论");
+        } else if (getComm_flag == 2) {
+            orderComment.setText("追评");
+        } else {
+            orderComment.setVisibility(View.GONE);
+        }
         orderComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,7 +146,7 @@ public class FindAllOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return orderList.size();
     }
 
-    class OrderItem extends RecyclerView.ViewHolder {
+    private class OrderItem extends RecyclerView.ViewHolder {
         TextView status;
         TextView total;
         LinearLayout contentLayout;
@@ -133,7 +155,7 @@ public class FindAllOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         TextView cancelOrder;
         TextView orderImmediately;
 
-        public OrderItem(View itemView) {
+        private OrderItem(View itemView) {
             super(itemView);
             status = (TextView) itemView.findViewById(R.id.orderStatus);
             total = (TextView) itemView.findViewById(R.id.orderTotal);
@@ -145,14 +167,14 @@ public class FindAllOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
     }
 
-    public void deleteItem(View view, int position) {
+    private void deleteItem(View view, int position) {
         presenter.deleteOrder(orderList.get(position).getId(), id, token);
         orderList.remove(position);
         notifyDataSetChanged();
         Toast.makeText(mContext, "删除成功", Toast.LENGTH_SHORT).show();
     }
 
-    public void cancelItem(int position) {
+    private void cancelItem(int position) {
         presenter.cancelOrder(orderList.get(position).getId(), id, token);
         listener.afterCancelListen();
         notifyDataSetChanged();

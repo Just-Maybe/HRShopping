@@ -14,7 +14,6 @@ import retrofit2.http.Query;
  */
 
 public interface SortProductService {
-//    http://119.29.24.119/api/products/category/7?pageNum=1
 //    /api/products/category?cid=cid&pageNum=1
     @GET("api/products/category/{cid}")
     Observable<ProductBean> getSortListProduct(@Path("cid") int cid, @Query("pageNum") int pageNum);

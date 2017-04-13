@@ -22,11 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class HttpMethods {
-//    http://172.16.169.22:8080/HR-Shop/
-    //    http://www.chjcal.cc
-//    172.16.169.22
-//    192.168.191.4
-//    192.168.191.5
+
     public static final String BASE_URL = "http://www.chjcal.cc/";
 
     private static final int DEFAULT_TIMEOUT = 5;

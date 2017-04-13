@@ -72,13 +72,11 @@ public class fragmentPageSortList extends Fragment implements SwipeRefreshLayout
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-//        Log.d(TAG, "setUserVisibleHint: "+getUserVisibleHint()+sortId);
         if (getUserVisibleHint() && isPrepare && mProductList.size() == 0) {
             isVisibile = true;
             refreshLayout.post(new Runnable() {
                 @Override
                 public void run() {
-//                    mProductList.clear();
                     refreshLayout.setRefreshing(true);
                     onRefresh();
                 }
@@ -86,8 +84,6 @@ public class fragmentPageSortList extends Fragment implements SwipeRefreshLayout
         } else {
             isVisibile = false;
         }
-//        Log.d(TAG, "setUserVisibleHint: "+isFirst);
-//        isFirst=false;
     }
 
 //    private void initData() {

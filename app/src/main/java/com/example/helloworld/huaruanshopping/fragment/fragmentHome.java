@@ -51,6 +51,7 @@ public class fragmentHome extends Fragment implements SwipeRefreshLayout.OnRefre
         mFragmentHomePresenter = new FragmentHomePresenter(this);
     }
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -93,8 +94,8 @@ public class fragmentHome extends Fragment implements SwipeRefreshLayout.OnRefre
 
                 if (dy > 10) {
                     if (!loading && totalItemCount < (lastVisibleItem + 2)) {
-                        Log.d("111", "onScrolled: " + totalItemCount);
-                        Log.d("111", "onScrolled: " + lastVisibleItem);
+//                        Log.d("111", "onScrolled: " + totalItemCount);
+//                        Log.d("111", "onScrolled: " + lastVisibleItem);
                         loading = true;
                         recyclerView.post(new Runnable() {
                             @Override

@@ -13,7 +13,6 @@ import retrofit2.http.POST;
  */
 
 public interface postProductService {
-    //    http://119.29.24.119/api/protypes/cart/add?ptid=1&number=1&id=1&token=532a8a18b75079da0c48414014600600d64737f36e330997
 
     //     /api/protypes/cart/add?ptid=1&number=1&id=1&token=token
     @FormUrlEncoded

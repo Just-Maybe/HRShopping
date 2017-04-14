@@ -21,7 +21,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class FragmentPageSortListPresenter implements IFragmentPageSortListBiz {
     private String TAG = "111";
-    IFragmentBaseView iFragmentPageSortList;
+    private IFragmentBaseView iFragmentPageSortList;
 
     public FragmentPageSortListPresenter(IFragmentBaseView iFragmentPageSortList) {
         this.iFragmentPageSortList = iFragmentPageSortList;
@@ -40,7 +40,7 @@ public class FragmentPageSortListPresenter implements IFragmentPageSortListBiz {
 
                     @Override
                     public void onNext(ProductBean productBean) {
-                        Log.d(TAG, "onNext: " + productBean.getData().size());
+//                        Log.d(TAG, "onNext: " + productBean.getData().size());
                         iFragmentPageSortList.showLoading();
                         iFragmentPageSortList.showData(productBean.getData(),false);
 //                        Log.d(TAG, "onNext: " + listProduct.getProductList().get(0).getName());

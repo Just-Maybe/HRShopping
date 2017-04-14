@@ -1,6 +1,7 @@
 package com.example.helloworld.huaruanshopping.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.helloworld.huaruanshopping.R;
+import com.example.helloworld.huaruanshopping.acitiviy.PhotoViewActivity;
 import com.example.helloworld.huaruanshopping.api.HttpMethods;
 import com.example.helloworld.huaruanshopping.bean.Comment.DataBean;
 import com.example.helloworld.huaruanshopping.util.DensityUtil;
@@ -58,7 +60,8 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 //                        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
                             ((CommentHolder) holder).commentPicLayout.addView(imageView, lp);
                             Glide.with(mContext).load(HttpMethods.BASE_URL + "comment-img/" +mCommentList.get(position).getComment_pic_Set().get(i).getPic()).into(imageView);
-                            Log.d(TAG, "onBindViewHolder: " + HttpMethods.BASE_URL + "comment-img/" + mCommentList.get(position).getComment_pic_Set().get(i).getPic());
+
+//                            Log.d(TAG, "onBindViewHolder: " + HttpMethods.BASE_URL + "comment-img/" + mCommentList.get(position).getComment_pic_Set().get(i).getPic());
                         }
                     }
                 }
@@ -72,7 +75,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return mCommentList.size();
     }
 
-    static class CommentHolder extends RecyclerView.ViewHolder {
+   private static class CommentHolder extends RecyclerView.ViewHolder {
         TextView commentName;
         TextView commentDate;
         RatingBar commentStar;

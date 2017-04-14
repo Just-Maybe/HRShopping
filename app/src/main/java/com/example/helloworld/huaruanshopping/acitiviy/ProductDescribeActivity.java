@@ -192,6 +192,6 @@ public class ProductDescribeActivity extends FragmentActivity implements IActivi
         super.onDestroy();
         defaultnumber = 0;
         ptid = 0;
-
+        mHandler.removeCallbacksAndMessages(null);
     }
 }

@@ -59,7 +59,7 @@ public class HomeRecylcerViewAdaper extends RecyclerView.Adapter<RecyclerView.Vi
     public HomeRecylcerViewAdaper(Context context, List<ProductBean.DataBean> list) {
         this.mContext = context;
         this.productList = list;
-
+        loadBannerPics();
     }
 
 
@@ -75,7 +75,7 @@ public class HomeRecylcerViewAdaper extends RecyclerView.Adapter<RecyclerView.Vi
 
                     @Override
                     public void onNext(ProductBean productBean) {
-                        Log.d(TAG, "onNext: " + productBean.getData().size());
+                        Log.d(TAG, "onNext: banner" + productBean.getData().size());
                         mpicList = transformPic(productBean.getData());
                         bannderList = productBean.getData();
                     }
@@ -199,7 +199,6 @@ public class HomeRecylcerViewAdaper extends RecyclerView.Adapter<RecyclerView.Vi
             ((footerViewHolder) holder).footerTv.setText(getLoadStatus());
 
         } else if (holder instanceof BannerViewHolder) {
-            loadBannerPics();
             ((BannerViewHolder) holder).banner.setImageLoader(new GlideImageLoader());
             ((BannerViewHolder) holder).banner.setImages(mpicList);
             ((BannerViewHolder) holder).banner.setDelayTime(3500);
@@ -207,8 +206,8 @@ public class HomeRecylcerViewAdaper extends RecyclerView.Adapter<RecyclerView.Vi
             ((BannerViewHolder) holder).banner.setOnBannerClickListener(new OnBannerClickListener() {
                 @Override
                 public void OnBannerClick(int position) {
-                    Log.d(TAG, "OnBannerClick: "+position);
-                    int id = bannderList.get(position-1).getId();
+                    Log.d(TAG, "OnBannerClick: " + position);
+                    int id = bannderList.get(position - 1).getId();
                     Intent intent = new Intent(mContext.getApplicationContext(), ProductDescribeActivity.class);
                     intent.putExtra("id", id);
                     mContext.startActivity(intent);

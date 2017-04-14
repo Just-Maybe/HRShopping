@@ -89,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
                         toolbar.setVisibility(View.VISIBLE);
                         searchTv.setText("个人信息");
                         searchIcon.setVisibility(View.GONE);
+//                        Intent intent = new Intent(MainActivity.this, PhotoViewActivity.class);
+//                        startActivity(intent);
                         break;
                 }
             }

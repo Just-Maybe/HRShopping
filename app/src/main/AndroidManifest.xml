@@ -33,6 +33,7 @@
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".acitiviy.PayTestActivity" />
         <activity android:name="cn.bmob.pay.v3.act.PayAct" />
+        <activity android:name=".acitiviy.PhotoViewActivity"/>
     </application>
 
 </manifest>

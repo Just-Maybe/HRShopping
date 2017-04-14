@@ -18,7 +18,6 @@ import retrofit2.http.Query;
  */
 
 public interface FindAllOrderService {
-    //   http://119.29.24.119/forder_findAllOrder.action?userid=1&pageNum=1&token=532a8a18b75079da0c48414014600600d64737f36e330997
 //   /api/forders/user?id=1&pageNum=1&token=token
 
     /**

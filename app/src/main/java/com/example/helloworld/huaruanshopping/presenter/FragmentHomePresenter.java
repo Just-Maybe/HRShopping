@@ -1,5 +1,7 @@
 package com.example.helloworld.huaruanshopping.presenter;
 
+import android.util.Log;
+
 import com.example.helloworld.huaruanshopping.api.HttpMethods;
 import com.example.helloworld.huaruanshopping.bean.ProductBean;
 import com.example.helloworld.huaruanshopping.presenter.biz.IFragmentHomeBiz;
@@ -38,14 +40,15 @@ public class FragmentHomePresenter implements IFragmentHomeBiz {
 
                     @Override
                     public void onNext(ProductBean productBean) {
-//                        Log.d(TAG, "onNext: " + listProduct.getStatus());
+                        Log.d(TAG, "onNext: " + productBean.getMessage());
 //                        Log.d(TAG, "onNext: " + listProduct.getProductList().size());
-                        if (productBean.getData() != null) {
+                        if (productBean.getData().size() > 0) {
                             if (productBean.getData().size() % 4 == 0) {
-                                iFragmentHome.showData(productBean.getData(),isLoadMore);
+                                iFragmentHome.showData(productBean.getData(), isLoadMore);
                             }
+                        } else if (productBean.getData().size() == 0) {
+                            iFragmentHome.showFailedError();
                         }
-                        iFragmentHome.showFailedError();
                     }
 
                     @Override

@@ -21,31 +21,32 @@ import retrofit2.http.Query;
  */
 
 public interface CartService {
-
+    ///    /api/carts/user?id=1&token=532a8a18b75079da0c48414014600600d64737f36e330997
     @GET("api/carts/user")
     Observable<CartBean> getListCart(@Query("id") int id, @Query("token") String token);
 
     //    修改购物车商品数量(数量，购物项id)
-
+//    /api/carts/{id}?number=1
     @PUT("api/carts/{id}")
     Observable<Response> updateCart(@Path("id") int id, @Query("number") int number);
 
     //    删除购物车Item
-
+//    /api/carts/{id}
     @DELETE("api/carts/{id}")
     Observable<Response> deleteCartItem(@Path("id") int id);
 
-
+//   /cart_placeOrderImmediately.action?ptids=1,2,3&numbers=1,2,1
+// &suserid=1&token=532a8a18b75079da0c48414014600600d64737f36e330997
 
     //    判断是否有库存
-
+//    /api/carts/buy?ptids=ptids&numbers=numbers&id=1&token=token
     @GET("api/carts/buy")
     Observable<Response> orderImmediately(@Query("ptids") String ptids,
                                           @Query("numbers") String numbers,
                                           @Query("id") int userid,
                                           @Query("token") String token);
 
-
+    //    /api/forders/user?id=1&order_json=order_json&token=token
 //    @Headers({"Content-Type: application/json", "Accept: application/json"})
     @FormUrlEncoded
     @POST("api/forders/user")

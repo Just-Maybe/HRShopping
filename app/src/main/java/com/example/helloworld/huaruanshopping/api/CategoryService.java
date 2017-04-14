@@ -14,8 +14,7 @@ import retrofit2.http.GET;
  */
 
 public interface CategoryService {
-
-
+//    /api/products/category/{cid}?pageNum=1
     @GET("api/categories/")
     Observable<Category> getCategory();
 }

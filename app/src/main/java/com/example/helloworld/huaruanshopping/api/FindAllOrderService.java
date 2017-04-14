@@ -18,8 +18,7 @@ import retrofit2.http.Query;
  */
 
 public interface FindAllOrderService {
-
-
+//   /api/forders/user?id=1&pageNum=1&token=token
 
     /**
      * 获取全部订单

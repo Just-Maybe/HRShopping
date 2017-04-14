@@ -1,6 +1,9 @@
 package com.example.helloworld.huaruanshopping.adapter;
 
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -11,6 +14,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.helloworld.huaruanshopping.R;
+import com.example.helloworld.huaruanshopping.acitiviy.CommentActivity;
+import com.example.helloworld.huaruanshopping.acitiviy.PhotoViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,14 +32,14 @@ import q.rorbin.badgeview.QBadgeView;
 
 public class CommentPicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final int REQUEST_CODE_GALLERY = 1001;
-    private static Context context;
+    private static CommentActivity context;
     private List<String> imageViewList = new ArrayList<>();
 
     public List<String> getImageViewList() {
         return imageViewList;
     }
 
-    public CommentPicAdapter(Context context) {
+    public CommentPicAdapter(CommentActivity context) {
         this.context = context;
     }
 
@@ -60,10 +65,22 @@ public class CommentPicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 });
             } else {
                 Glide.with(context).load(imageViewList.get(position - 1)).into(((itemHolder) holder).imageView);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    ((itemHolder) holder).imageView.setTransitionName("image");
+                }
                 ((itemHolder) holder).imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(context, "!!!", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(context, "!!!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(context.getApplicationContext(), PhotoViewActivity.class);
+                        intent.putStringArrayListExtra("imageUrlsList", (ArrayList<String>) imageViewList);
+                        intent.putExtra("ListPosition", position - 1);
+                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(context, ((itemHolder) holder).imageView, "image");
+                            context.startActivity(intent, options.toBundle());
+                        } else {
+                            context.startActivity(intent);
+                        }
                     }
                 });
                 ((itemHolder) holder).badge.setBadgeText("一").setGravityOffset(-3, -3, true);

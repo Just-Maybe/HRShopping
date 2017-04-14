@@ -175,6 +175,9 @@ public class orderList {
             private double price;
             @SerializedName("number")
             private int number;
+            @SerializedName("comm_flag")
+            private int comm_flag;
+
             @SerializedName("protype")
             private ProtypeBean protype;
 
@@ -184,6 +187,14 @@ public class orderList {
 
             public void setId(int id) {
                 this.id = id;
+            }
+
+            public int getComm_flag() {
+                return comm_flag;
+            }
+
+            public void setComm_flag(int comm_flag) {
+                this.comm_flag = comm_flag;
             }
 
             public double getPrice() {

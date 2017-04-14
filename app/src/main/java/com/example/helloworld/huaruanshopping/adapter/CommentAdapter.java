@@ -72,7 +72,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return mCommentList.size();
     }
 
-    static class CommentHolder extends RecyclerView.ViewHolder {
+   private static class CommentHolder extends RecyclerView.ViewHolder {
         TextView commentName;
         TextView commentDate;
         RatingBar commentStar;

@@ -19,7 +19,7 @@ import cn.finalteam.galleryfinal.ThemeConfig;
 
 public class IApplication extends Application {
     String TAG = "111";
-    private final static String ApplicationID = "fdb8f×××6××××××××cdde36d4b";
+    private final static String ApplicationID = "fdb8f630d7926a5ad3e02cdcdde36d4b";
 
     @Override
     public void onCreate() {

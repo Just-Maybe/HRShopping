@@ -4,6 +4,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -26,6 +27,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.helloworld.huaruanshopping.R;
+import com.example.helloworld.huaruanshopping.acitiviy.PhotoViewActivity;
 import com.example.helloworld.huaruanshopping.acitiviy.ProductDescribeActivity;
 import com.example.helloworld.huaruanshopping.api.HttpMethods;
 import com.example.helloworld.huaruanshopping.bean.ProductBean;
@@ -34,6 +36,7 @@ import com.example.helloworld.huaruanshopping.presenter.implView.IActivityProduc
 import com.example.helloworld.huaruanshopping.view.GlideImageLoader;
 import com.example.helloworld.huaruanshopping.view.RadioGroupEx;
 import com.youth.banner.Banner;
+import com.youth.banner.listener.OnBannerClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +67,7 @@ public class fragmentProductDescribe extends Fragment implements IActivityProduc
     ImageButton reduceBtn;
     @BindView(R.id.describeRemark)
     TextView describeRemark;
-    private List<String> mpicList = new ArrayList<>();
+    private ArrayList<String> mpicList = new ArrayList<>();
     private int defaultnumber = 2;
     ActivityProductDescribePresenter presenter;
     int pid = 0;
@@ -219,6 +222,15 @@ public class fragmentProductDescribe extends Fragment implements IActivityProduc
         banner.setImageLoader(new GlideImageLoader());
         banner.setImages(mpicList);
         banner.isAutoPlay(false);
+        banner.setOnBannerClickListener(new OnBannerClickListener() {
+            @Override
+            public void OnBannerClick(int position) {
+                Intent intent = new Intent(getActivity(), PhotoViewActivity.class);
+                intent.putStringArrayListExtra("imageUrlsList", mpicList);
+                intent.putExtra("ListPosition", position - 1);
+                startActivity(intent);
+            }
+        });
         banner.start();
     }
 

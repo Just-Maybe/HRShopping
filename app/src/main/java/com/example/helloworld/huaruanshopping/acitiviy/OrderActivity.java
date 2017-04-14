@@ -87,21 +87,20 @@ public class OrderActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 //        Log.d(TAG, "onResume: " + getAddressList().size());
-        if (getAddressList() != null) {
-            if (getAddressList().size() > 0) {
-                address = (address) getAddressList().get(0);
-                nameStr = address.getName();
-                addressStr = address.getAddress();
-                phoneStr = address.getPhone();
-                jsonBean.setAddress(addressStr);
-                jsonBean.setName(nameStr);
-                jsonBean.setPhone(phoneStr);
-            }
+        if (getAddressList() != null && getAddressList().size() > 0) {
+            address = (address) getAddressList().get(0);
+            nameStr = address.getName();
+            addressStr = address.getAddress();
+            phoneStr = address.getPhone();
+            jsonBean.setAddress(addressStr);
+            jsonBean.setName(nameStr);
+            jsonBean.setPhone(phoneStr);
         } else {
             jsonBean.setAddress("");
             jsonBean.setName("");
             jsonBean.setPhone("先添加一个地址");
         }
+
         adapter.notifyDataSetChanged();
     }
 

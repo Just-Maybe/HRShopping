@@ -11,6 +11,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -48,6 +49,7 @@ public interface CartService {
 
     //    /api/forders/user?id=1&order_json=order_json&token=token
 //    @Headers({"Content-Type: application/json", "Accept: application/json"})
+//    下单请求，返回后台订单号
     @FormUrlEncoded
     @POST("api/forders/user")
     Observable<Response> order(@Field("id") int id,
@@ -55,4 +57,8 @@ public interface CartService {
                                @Field("token") String token);
 
 
+//    /api/forders/pay/{id}?fid=fid
+
+    @POST("/api/forders/pay/{id}")
+    Observable<Response> orderResult(@Path("id") String bmobId, @Query("fid") String fid);
 }

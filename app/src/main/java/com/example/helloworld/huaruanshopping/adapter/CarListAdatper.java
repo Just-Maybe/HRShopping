@@ -34,6 +34,7 @@ import java.util.List;
 
 public class CarListAdatper extends BaseAdapter {
     public Context context;
+
     private List<CartBean.DataBean> mList;
     private static HashMap<Integer, Boolean> checkeds = null;
     private final static String TAG = "111";
@@ -42,6 +43,15 @@ public class CarListAdatper extends BaseAdapter {
     private List<Integer> mNumbers = new ArrayList<>();
     private List<CartBean.DataBean> selectedList = new ArrayList<>();
     public List<Integer> num;
+    private totalChangedListener listener;
+
+    public List<CartBean.DataBean> getmList() {
+        return mList;
+    }
+
+    public void setmList(List<CartBean.DataBean> mList) {
+        this.mList = mList;
+    }
 
 
     public List<Integer> getmNumbers() {
@@ -162,76 +172,93 @@ public class CarListAdatper extends BaseAdapter {
                     getCheckeds().put(position, true);
                     mNumbers.add(mList.get(position).getNumber());
                     mPtids.add(mList.get(position).getId());
-//                    selectedList.add(mList.get(position));
+                    selectedList.add(mList.get(position));
 //                    Log.d("TAG", "onCheckedChanged: " + selectedList.size());
                 } else {
                     buttonView.setChecked(false);
                     getCheckeds().put(position, false);
                     mNumbers.remove(mList.get(position));
                     mPtids.remove(mList.get(position));
+                    selectedList.remove(mList.get(position));
 //                    Log.d("TAG", "onCheckedChanged: " + selectedList.size());
                 }
                 Log.d(TAG, "onCheckedChanged: " + getCheckeds().get(position));
+                listener.totalChanged();
                 notifyDataSetChanged();
             }
         });
         holder.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                num.set(position, num.get(position) + 1);
-                holder.itemAmount.setText(num.get(position) + "");
-                mList.get(position).setNumber(num.get(position));
-                holder.reduceBtn.setClickable(true);
-                if (num.get(position) == 20) {
+                if (num.get(position) >= 20) {
                     holder.addBtn.setClickable(false);
-                }
-//                progressDialog.show();
-                CartAdapterPostData.updateCartData(mList.get(position).getId(), num.get(position), new CartAdapterPostData.updateListener() {
-                    @Override
-                    public void onFailed() {
-
+                } else {
+                    num.set(position, num.get(position) + 1);
+                    holder.itemAmount.setText(num.get(position) + "");
+                    mList.get(position).setNumber(num.get(position));
+                    holder.reduceBtn.setClickable(true);
+                    if (selectedList.contains(mList.get(position))) {
+                        selectedList.remove(mList.get(position));
+                        selectedList.add(mList.get(position));
+                        listener.totalChanged();
                     }
 
-                    @Override
-                    public void onSuccess() {
+//                progressDialog.show();
+                    CartAdapterPostData.updateCartData(mList.get(position).getId(), num.get(position), new CartAdapterPostData.updateListener() {
+                        @Override
+                        public void onFailed() {
+
+                        }
+
+                        @Override
+                        public void onSuccess() {
 //                        Snackbar.make(getView(position, finalConvertView1, parent).getRootView(), "修改成功", Snackbar.LENGTH_SHORT).show();
 
-                    }
-                });
-                ObjectAnimator animator1 = ObjectAnimator.ofFloat(holder.addBtn, "ScaleX", 1.0f, 1.4f, 1.0f);
-                ObjectAnimator animator2 = ObjectAnimator.ofFloat(holder.addBtn, "ScaleY", 1.0f, 1.4f, 1.0f);
-                AnimatorSet set = new AnimatorSet();
-                set.play(animator1).with(animator2);
-                set.setDuration(500).start();
+                        }
+                    });
+                    ObjectAnimator animator1 = ObjectAnimator.ofFloat(holder.addBtn, "ScaleX", 1.0f, 1.4f, 1.0f);
+                    ObjectAnimator animator2 = ObjectAnimator.ofFloat(holder.addBtn, "ScaleY", 1.0f, 1.4f, 1.0f);
+                    AnimatorSet set = new AnimatorSet();
+                    set.play(animator1).with(animator2);
+                    set.setDuration(500).start();
+                }
             }
         });
         holder.reduceBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                num.set(position, num.get(position) - 1);
-                holder.itemAmount.setText(num.get(position) + "");
-                mList.get(position).setNumber(num.get(position));
-                holder.addBtn.setClickable(true);
-                if (num.get(position) == 1) {
+                if (num.get(position) <= 1) {
                     holder.reduceBtn.setClickable(false);
-                }
-//                progressDialog.show();
-                CartAdapterPostData.updateCartData(mList.get(position).getId(), num.get(position), new CartAdapterPostData.updateListener() {
-                    @Override
-                    public void onFailed() {
+                } else {
+                    num.set(position, num.get(position) - 1);
+                    holder.itemAmount.setText(num.get(position) + "");
+                    mList.get(position).setNumber(num.get(position));
+                    holder.addBtn.setClickable(true);
+                    if (selectedList.contains(mList.get(position))) {
+                        selectedList.remove(mList.get(position));
+                        selectedList.add(mList.get(position));
+                        listener.totalChanged();
                     }
 
-                    @Override
-                    public void onSuccess() {
+//                listener.totalChanged();
+//                progressDialog.show();
+                    CartAdapterPostData.updateCartData(mList.get(position).getId(), num.get(position), new CartAdapterPostData.updateListener() {
+                        @Override
+                        public void onFailed() {
+                        }
+
+                        @Override
+                        public void onSuccess() {
 //                        progressDialog.dismiss();
 //                        Snackbar.make(getView(position, finalConvertView, parent).getRootView(), "修改成功", Snackbar.LENGTH_SHORT).show();
-                    }
-                });
-                ObjectAnimator animator1 = ObjectAnimator.ofFloat(holder.reduceBtn, "ScaleX", 1.0f, 1.4f, 1.0f);
-                ObjectAnimator animator2 = ObjectAnimator.ofFloat(holder.reduceBtn, "ScaleY", 1.0f, 1.4f, 1.0f);
-                AnimatorSet set = new AnimatorSet();
-                set.play(animator1).with(animator2);
-                set.setDuration(400).start();
+                        }
+                    });
+                    ObjectAnimator animator1 = ObjectAnimator.ofFloat(holder.reduceBtn, "ScaleX", 1.0f, 1.4f, 1.0f);
+                    ObjectAnimator animator2 = ObjectAnimator.ofFloat(holder.reduceBtn, "ScaleY", 1.0f, 1.4f, 1.0f);
+                    AnimatorSet set = new AnimatorSet();
+                    set.play(animator1).with(animator2);
+                    set.setDuration(400).start();
+                }
             }
         });
         return convertView;
@@ -262,7 +289,36 @@ public class CarListAdatper extends BaseAdapter {
         Log.d(TAG, "deleteItem:id " + mList.get(position).getId());
         num.remove(position);
         CartAdapterPostData.deleteItem(mList.get(position).getId());
+        if (selectedList.contains(mList.get(position))) {
+            selectedList.remove(mList.get(position));
+            listener.totalChanged();
+        }
+        deleteItemInChecked(position);
         mList.remove(position);
         notifyDataSetChanged();
+    }
+
+    private void deleteItemInChecked(int position) {
+        for (int i = position; i < checkeds.size(); i++) {
+            checkeds.put(i, checkeds.get(position + 1));
+//            checkeds.remove(checkeds.size()-1);
+        }
+    }
+
+    public double refreshTotal() {
+        double total = 0.0;
+        for (int i = 0; i < selectedList.size(); i++) {
+            total += getSelectedList().get(i).getNumber() * getSelectedList().get(i).getProtype().getProduct().getPrice();
+        }
+        Log.d(TAG, "refreshTotal: " + total);
+        return total;
+    }
+
+    public void setOnTotalChangedListen(totalChangedListener listener) {
+        this.listener = listener;
+    }
+
+    public interface totalChangedListener {
+        void totalChanged();
     }
 }

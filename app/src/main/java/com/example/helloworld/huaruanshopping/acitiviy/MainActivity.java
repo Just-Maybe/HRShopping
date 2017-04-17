@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     RelativeLayout searchLayout;
     String jsonString = "{\"name\": \"sysho\",\"address\":\"清风阁\",\"remark\":\"加两双筷子\",\"phone\": \"123124325235\",\"cart\":[{\"id\":1,\"number\":43,\"protype\":{\"id\": 4,\"name\":\"老坛酸菜\",\"pic\":\"4.jpg\",\"inventory\":100,\"product\":{\"id\":2,\"name\":\"方便面\",\"price\": 23}}},{\"id\": 6,\"number\": 3,\"protype\":{\"id\": 3,\"name\":\"烧烤味\",\"pic\":\"4.jpg\",\"inventory\":50,\"product\":{\"id\": 2,\"name\":\"薯片\",\"price\": 23}}}]}";
     String TAG = "111";
+    int pagePosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +46,35 @@ public class MainActivity extends AppCompatActivity {
         initToobar();
         mainContent = (FrameLayout) findViewById(R.id.main);
         fm = getSupportFragmentManager();
-        fm.beginTransaction().replace(R.id.main, new fragmentHome()).commit();
+
         initBottomNav();
+        fm.beginTransaction().replace(R.id.main, new fragmentHome()).commit();
         Log.d(TAG, "onCreate: " + MD5Util.getEncryption("123"));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        pagePosition = intent.getIntExtra("pagePosition", 0);
+        Log.d(TAG, "onNewIntent: position" + pagePosition);
+
+        if (pagePosition == 0) {
+            fm.beginTransaction().replace(R.id.main, new fragmentHome()).commit();
+        } else {
+            mBottomNavigationView.selectTab(2);
+            fm.beginTransaction().replace(R.id.main, new fragmentCar()).commit();
+            toolbar.setVisibility(View.VISIBLE);
+            searchIcon.setVisibility(View.GONE);
+            searchTv.setText("购物车");
+        }
+    }
 
     /**
      * 初始化底部导航

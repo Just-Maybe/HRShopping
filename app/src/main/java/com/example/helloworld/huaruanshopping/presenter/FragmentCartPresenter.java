@@ -23,7 +23,6 @@ import io.reactivex.schedulers.Schedulers;
 public class FragmentCartPresenter implements IFragmentCartBiz {
     IFragmentCart iFragmentCart;
     private final static String TAG = "111";
-    String jsonString = "{'name':'sysho','address':'清风阁','remark':'加两双筷子','phone':'123124325235','cart':[{'id':1,'number':43,'protype':{'id':4,'name':'老坛酸菜','pic':'4.jpg','inventory':100,'product':{'id':2,'name':'方便面','price':23}}},{'id':6,'number':3,'protype':{'id':4,'name':'烧烤味','pic':'4.jpg','inventory':50,'product':{'id':2,'name':'薯片','price':23}}}]}";
     private String token="532a8a18b75079da0c48414014600600d64737f36e330997";
 
     public FragmentCartPresenter(IFragmentCart iFragmentCart) {
@@ -96,37 +95,8 @@ public class FragmentCartPresenter implements IFragmentCartBiz {
 
     }
 
-//    @Override
-//    public void OrderProducts(int id,String json,String token) {
-////        Log.d(TAG, "OrderProducts: "+jsonString);
-//        Observable<Response> observable = HttpMethods.getInstance().getCartService().order(1,jsonString, token);
-//        observable.subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Observer<Response>() {
-//                    @Override
-//                    public void onSubscribe(Disposable d) {
-//                    }
-//
-//                    @Override
-//                    public void onNext(Response response) {
-//                        Log.d(TAG, "onNext: " + response);
-//                        if (response == null) {
-//                            Log.d(TAG, "onNext: null");
-//                        }
-//                        Log.d(TAG, "onNext: " + response.getMsg());
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onComplete() {
-//                        iFragmentCart.onOrderSuccess();
-//                    }
-//                });
-//    }
+
+
 
 
     public String transformPtids(List<Integer> mPtids) {

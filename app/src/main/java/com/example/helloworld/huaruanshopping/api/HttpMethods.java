@@ -1,7 +1,6 @@
 package com.example.helloworld.huaruanshopping.api;
 
 
-
 import java.io.File;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -22,7 +21,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class HttpMethods {
-
+    //172.16.169.22
+//    http://www.chjcal.cc/
+//    http://192.168.191.3:8080/HR-Shop/
     public static final String BASE_URL = "http://www.chjcal.cc/";
 
     private static final int DEFAULT_TIMEOUT = 5;

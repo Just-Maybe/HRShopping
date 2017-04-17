@@ -124,12 +124,16 @@ public class ProductDescribeActivity extends FragmentActivity implements IActivi
         initView();
     }
 
-    @OnClick({R.id.back})
+    @OnClick({R.id.back, R.id.carBtn})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
                 this.finish();
                 break;
+            case R.id.carBtn:
+                Intent intent = new Intent(ProductDescribeActivity.this, MainActivity.class);
+                intent.putExtra("pagePosition", 2);
+                startActivity(intent);
         }
     }
 

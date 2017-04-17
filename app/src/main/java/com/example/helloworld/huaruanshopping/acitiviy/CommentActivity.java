@@ -109,8 +109,8 @@ public class CommentActivity extends AppCompatActivity implements IActivityComme
         switch (view.getId()) {
 
             case R.id.commentBtn:
-//                presenter.postComment(1, 17, 4, getCommentContent(), adapter.getImageViewList());
-                presenter.postAppendComment(16, 1, 17, "asdasdasdasd",adapter.getImageViewList());
+                presenter.postComment(1, 17, 4, getCommentContent(), adapter.getImageViewList());
+//                presenter.postAppendComment(16, 1, 17, "asdasdasdasd",adapter.getImageViewList());
                 break;
             case R.id.productDescribeBtn:
 

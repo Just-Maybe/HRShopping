@@ -40,6 +40,8 @@ import butterknife.ButterKnife;
  */
 
 public class fragmentCar extends Fragment implements IFragmentCart {
+    @BindView(R.id.waitToPayTotal)
+    TextView waitToPayTotal;
     private View view;
     private SwipeMenuListView swipeMenuListView;
     private List<CartBean.DataBean> mProductList = new ArrayList<>();
@@ -109,6 +111,7 @@ public class fragmentCar extends Fragment implements IFragmentCart {
         selectAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                double total = 0;
                 if (isSelectAll()) {
                     selectAll.setTextColor(getResources().getColor(R.color.colorseparation));
                     for (int i = 0; i < adapter.getCount(); i++) {
@@ -126,9 +129,11 @@ public class fragmentCar extends Fragment implements IFragmentCart {
                         adapter.getmNumbers().add(mProductList.get(i).getNumber());
                         adapter.getmPtids().add(mProductList.get(i).getId());
                         adapter.getSelectedList().add(mProductList.get(i));
+                        total += adapter.getSelectedList().get(i).getNumber() * adapter.getSelectedList().get(i).getProtype().getProduct().getPrice();
                     }
                     Log.d(TAG, "onClick: " + adapter.getSelectedList().size());
                 }
+                waitToPayTotal.setText("￥" + total);
                 adapter.notifyDataSetChanged();
             }
         });
@@ -182,6 +187,12 @@ public class fragmentCar extends Fragment implements IFragmentCart {
             mProductList.add(cartBeanList.get(i));
         }
         adapter = new CarListAdatper(getContext(), mProductList);
+        adapter.setOnTotalChangedListen(new CarListAdatper.totalChangedListener() {
+            @Override
+            public void totalChanged() {
+                waitToPayTotal.setText("￥ " + adapter.refreshTotal());
+            }
+        });
         initSeletAllBtn();
         swipeMenuListView.setAdapter(adapter);
         initOrderBtn();
@@ -221,5 +232,4 @@ public class fragmentCar extends Fragment implements IFragmentCart {
         }
 
     }
-
 }

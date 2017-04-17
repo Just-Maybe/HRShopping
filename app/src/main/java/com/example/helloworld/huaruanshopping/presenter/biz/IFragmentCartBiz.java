@@ -11,5 +11,4 @@ public interface IFragmentCartBiz {
 
     void isEnoughProduct(List<Integer> ptids, List<Integer> numbers, int userid, String token);
 
-//    void OrderProducts(int id,String json,String token);
 }

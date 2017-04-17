@@ -49,12 +49,36 @@
             android:textColor="@color/colorseparation"
             android:textSize="12dp" />
 
+        <LinearLayout
+            android:id="@+id/waitToPay"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/orderBtn"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="待付款:" />
+
+            <TextView
+                android:textColor="@color/colorToobarTitle"
+                android:id="@+id/waitToPayTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="￥ 0.0"
+                android:textSize="15dp" />
+        </LinearLayout>
 
         <TextView
-            android:layout_alignParentRight="true"
             android:id="@+id/orderBtn"
             android:layout_width="70dp"
             android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
             android:background="@color/colorPostOrder"
             android:gravity="center"
             android:text="立即结算"

@@ -301,7 +301,7 @@ public class CarListAdatper extends BaseAdapter {
     private void deleteItemInChecked(int position) {
         for (int i = position; i < checkeds.size(); i++) {
             checkeds.put(i, checkeds.get(position + 1));
-//            checkeds.remove(checkeds.size()-1);
+//            checkeds.remove(checkeds.size()-1);l
         }
     }
 

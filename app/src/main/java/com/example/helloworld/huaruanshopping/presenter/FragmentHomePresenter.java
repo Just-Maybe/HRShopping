@@ -6,6 +6,7 @@ import com.example.helloworld.huaruanshopping.api.HttpMethods;
 import com.example.helloworld.huaruanshopping.bean.ProductBean;
 import com.example.helloworld.huaruanshopping.presenter.biz.IFragmentHomeBiz;
 import com.example.helloworld.huaruanshopping.presenter.implView.IFragmentBaseView;
+import com.example.helloworld.huaruanshopping.util.saveFileUtil;
 
 import java.util.List;
 

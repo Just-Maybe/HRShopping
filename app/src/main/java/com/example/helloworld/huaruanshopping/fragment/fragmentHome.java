@@ -10,13 +10,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.helloworld.huaruanshopping.R;
 import com.example.helloworld.huaruanshopping.adapter.HomeRecylcerViewAdaper;
+import com.example.helloworld.huaruanshopping.api.HttpMethods;
 import com.example.helloworld.huaruanshopping.bean.ProductBean;
 import com.example.helloworld.huaruanshopping.bean.ProductListBean;
 import com.example.helloworld.huaruanshopping.presenter.FragmentHomePresenter;
 import com.example.helloworld.huaruanshopping.presenter.implView.IFragmentBaseView;
+import com.example.helloworld.huaruanshopping.util.netWorkState;
+import com.example.helloworld.huaruanshopping.util.saveFileUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +31,7 @@ import java.util.List;
 
 public class fragmentHome extends Fragment implements SwipeRefreshLayout.OnRefreshListener, IFragmentBaseView {
     private RecyclerView mRecyclerView;
-    private List<ProductBean.DataBean> mProductList = new ArrayList<>();
+    private ArrayList<ProductBean.DataBean> mProductList = new ArrayList<>();
     private RecyclerView.LayoutManager mLayoutManager;
     private static SwipeRefreshLayout mRefreshLayout;
     private View view;
@@ -36,6 +40,7 @@ public class fragmentHome extends Fragment implements SwipeRefreshLayout.OnRefre
     private HomeRecylcerViewAdaper adaper;
     private int pageNum = 2;
     boolean isLoadMore = false;
+    String TAG = "111";
 
     public static fragmentHome newInstance() {
 
@@ -99,8 +104,12 @@ public class fragmentHome extends Fragment implements SwipeRefreshLayout.OnRefre
                         recyclerView.post(new Runnable() {
                             @Override
                             public void run() {
-                                addMoreData();
-                                adaper.setLoadStatus("加载中...");
+                                if (netWorkState.isNetWorkConnected(getActivity())) {
+                                    addMoreData();
+                                    adaper.setLoadStatus("加载中...");
+                                } else {
+                                    adaper.setLoadStatus("没有网络");
+                                }
                             }
                         });
                         Log.d("111", "onScrolled: LoadMOre" + pageNum);
@@ -121,9 +130,25 @@ public class fragmentHome extends Fragment implements SwipeRefreshLayout.OnRefre
     @Override
     public void onRefresh() {
 //            mHandler.sendEmptyMessageDelayed(0x111, 2000);
-        adaper.setLoadStatus("");
-        mFragmentHomePresenter.getHomePrudoct(2, 1, false);
-        pageNum = 2;
+        if (netWorkState.isNetWorkConnected(getContext().getApplicationContext())) {
+            Log.d(TAG, "onRefresh: " + netWorkState.isNetWorkConnected(getContext().getApplicationContext()));
+            adaper.setLoadStatus("");
+            mFragmentHomePresenter.getHomePrudoct(2, 1, false);
+            pageNum = 2;
+        } else {
+//            mProductList = new ArrayList<>();
+            mProductList = (ArrayList<ProductBean.DataBean>) saveFileUtil.readObject(getContext().getApplicationContext(), saveFileUtil.HomeData);
+            Log.d(TAG, "onRefresh: " + mProductList.size());
+            if (mProductList.size() > 0) {
+                adaper.setProductList(mProductList);
+//                adaper.addMoreData(mProductList);
+                if (mRefreshLayout.isRefreshing()) {
+                    mRefreshLayout.setRefreshing(false);
+                }
+                Toast.makeText(getActivity(), "网络出问题了!", Toast.LENGTH_SHORT).show();
+                adaper.setLoadStatus("没有网络");
+            }
+        }
     }
 
     @Override
@@ -146,13 +171,20 @@ public class fragmentHome extends Fragment implements SwipeRefreshLayout.OnRefre
     }
 
     @Override
-    public void showData(List<ProductBean.DataBean> list, boolean isLoadMore) {
+    public void showData(ArrayList<ProductBean.DataBean> list, boolean isLoadMore) {
         if (list != null) {
             if (!isLoadMore) {
-                mProductList.clear();
+                adaper.setProductList(list);
+            } else {
+                adaper.addMoreData(list);
             }
-            adaper.addMoreData(list);
-
+            saveFileUtil.saveObject(getContext().getApplicationContext(), adaper.getProductList(), saveFileUtil.HomeData);
         }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+//        saveFileUtil.saveObject(getContext().getApplicationContext(), mProductList, saveFileUtil.HomeData);
     }
 }

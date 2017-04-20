@@ -1,7 +1,12 @@
 package com.example.helloworld.huaruanshopping.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +26,7 @@ public class ProductBean {
     @SerializedName("error_code")
     private String error_code;
     @SerializedName("data")
-    private List<DataBean> data;
+    private ArrayList<DataBean> data;
 
     public String getMessage() {
         return message;
@@ -39,15 +44,15 @@ public class ProductBean {
         this.error_code = error_code;
     }
 
-    public List<DataBean> getData() {
+    public ArrayList<DataBean> getData() {
         return data;
     }
 
-    public void setData(List<DataBean> data) {
+    public void setData(ArrayList<DataBean> data) {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable {
         /**
          * id : 1
          * name : 1康师傅大方便面
@@ -67,7 +72,7 @@ public class ProductBean {
         @SerializedName("sales")
         private int sales;
         @SerializedName("protypeSet")
-        private List<ProtypeSetBean> protypeSet;
+        private ArrayList<ProtypeSetBean> protypeSet;
 
         public int getId() {
             return id;
@@ -109,15 +114,15 @@ public class ProductBean {
             this.sales = sales;
         }
 
-        public List<ProtypeSetBean> getProtypeSet() {
+        public ArrayList<ProtypeSetBean> getProtypeSet() {
             return protypeSet;
         }
 
-        public void setProtypeSet(List<ProtypeSetBean> protypeSet) {
+        public void setProtypeSet(ArrayList<ProtypeSetBean> protypeSet) {
             this.protypeSet = protypeSet;
         }
 
-        public static class ProtypeSetBean {
+        public static class ProtypeSetBean implements Serializable {
             /**
              * id : 2
              * name : 海鲜味
@@ -164,6 +169,9 @@ public class ProductBean {
             public void setInventory(int inventory) {
                 this.inventory = inventory;
             }
+
+
         }
+
     }
 }

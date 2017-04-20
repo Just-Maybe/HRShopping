@@ -33,7 +33,7 @@ import java.util.List;
 public class fragmentPageSortList extends Fragment implements SwipeRefreshLayout.OnRefreshListener, IFragmentBaseView {
     private RecyclerView mRecyclerView;
     private View view;
-    private List<ProductBean.DataBean> mProductList = new ArrayList<>();
+    private ArrayList<ProductBean.DataBean> mProductList = new ArrayList<>();
     private RecyclerView.LayoutManager layoutManager;
     private SortListRecylcerViewAdapter adapter;
     private SwipeRefreshLayout refreshLayout;
@@ -154,7 +154,7 @@ public class fragmentPageSortList extends Fragment implements SwipeRefreshLayout
     }
 
     @Override
-    public void showData(List<ProductBean.DataBean> list,boolean isLoadMore) {
+    public void showData(ArrayList<ProductBean.DataBean> list,boolean isLoadMore) {
         mProductList.clear();
         if (list != null) {
             if (!(mProductList.equals(list))) {

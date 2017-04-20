@@ -1,6 +1,10 @@
 package com.example.helloworld.huaruanshopping.api;
 
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
 import java.io.File;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -60,6 +64,7 @@ public class HttpMethods {
     private static class SingletonHolder {
         private static final HttpMethods INSTANCE = new HttpMethods();
     }
+
 
     public HomeProductService getHomeProductApi() {
         if (homeProductApi == null) {

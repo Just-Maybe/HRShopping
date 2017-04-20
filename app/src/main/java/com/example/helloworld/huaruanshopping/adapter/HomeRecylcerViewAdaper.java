@@ -17,6 +17,8 @@ import com.example.helloworld.huaruanshopping.acitiviy.ProductDescribeActivity;
 import com.example.helloworld.huaruanshopping.api.HttpMethods;
 import com.example.helloworld.huaruanshopping.bean.ProductBean;
 import com.example.helloworld.huaruanshopping.bean.ProductListBean;
+import com.example.helloworld.huaruanshopping.util.netWorkState;
+import com.example.helloworld.huaruanshopping.util.saveFileUtil;
 import com.example.helloworld.huaruanshopping.view.GlideImageLoader;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerClickListener;
@@ -40,9 +42,9 @@ public class HomeRecylcerViewAdaper extends RecyclerView.Adapter<RecyclerView.Vi
     private final int NORMAL_ONE = Integer.MAX_VALUE - 2;
     private final int NORMAL_TWO = Integer.MAX_VALUE - 3;
     private final int FOOTERVIEW = Integer.MAX_VALUE - 4;
-    private List<ProductBean.DataBean> productList = new ArrayList<>();
-    private List<String> mpicList = new ArrayList<>();
-    private List<ProductBean.DataBean> bannderList = new ArrayList<>();
+    private ArrayList<ProductBean.DataBean> productList = new ArrayList<>();
+    private ArrayList<String> mpicList = new ArrayList<>();
+    private ArrayList<ProductBean.DataBean> bannderList = new ArrayList<>();
     //    private Integer[] pics = {R.drawable.girl2, R.drawable.girl3, R.drawable.gril4};
     private String TAG = "111";
     private String loadStatus = "加载中...";
@@ -56,10 +58,27 @@ public class HomeRecylcerViewAdaper extends RecyclerView.Adapter<RecyclerView.Vi
         notifyDataSetChanged();
     }
 
-    public HomeRecylcerViewAdaper(Context context, List<ProductBean.DataBean> list) {
+
+    public ArrayList<ProductBean.DataBean> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(ArrayList<ProductBean.DataBean> productList) {
+        this.productList = productList;
+        notifyDataSetChanged();
+    }
+
+    public HomeRecylcerViewAdaper(Context context, ArrayList<ProductBean.DataBean> list) {
         this.mContext = context;
         this.productList = list;
-        loadBannerPics();
+        if (netWorkState.isNetWorkConnected(mContext)) {
+            loadBannerPics();
+        } else {
+            if (saveFileUtil.readObject(mContext, "bannerList") != null) {
+                mpicList = (ArrayList<String>) saveFileUtil.readObject(mContext, "bannerList");
+                Log.d(TAG, "HomeRecylcerViewAdaper: " + bannderList.size());
+            }
+        }
     }
 
 
@@ -78,6 +97,7 @@ public class HomeRecylcerViewAdaper extends RecyclerView.Adapter<RecyclerView.Vi
                         Log.d(TAG, "onNext: " + productBean.getData().size());
                         mpicList = transformPic(productBean.getData());
                         bannderList = productBean.getData();
+                        saveFileUtil.saveObject(mContext, mpicList, "bannerList");
                     }
 
                     @Override
@@ -92,8 +112,8 @@ public class HomeRecylcerViewAdaper extends RecyclerView.Adapter<RecyclerView.Vi
                 });
     }
 
-    private List<String> transformPic(List<ProductBean.DataBean> productBeanList) {
-        List<String> listPics = new ArrayList<>();
+    private ArrayList<String> transformPic(List<ProductBean.DataBean> productBeanList) {
+        ArrayList<String> listPics = new ArrayList<>();
         List<ProductBean.DataBean> productList = productBeanList;
         for (int i = 0; i < productList.size(); i++) {
             listPics.add(HttpMethods.BASE_URL + productList.get(i).getProtypeSet().get(0).getPic());

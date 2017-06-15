@@ -22,8 +22,26 @@
 * 用了Sharepreference + gson 来存储地址。因为关联性不强，用SQlite有点大动作，而IO文件存储消耗性能。
   
 * 当ListView滚动时自动调用 onCheckedChanged 导致CheckBox 状态不停变化 的解决办法
-    
-
+    //在初始化CheckBox状态和设置状态变化监听事件之前，先把状态变化监听事件设置为null  
+    holder.checkBox.setOnCheckedChangeListener(null);  
+    //然后设置CheckBox状态  
+    if(isChecked) {
+        holder.checkbox.setChecked(true);  
+       } else {
+       holder.checkbox.setChecked(false);  
+       }  
+       //然后设置状态变化监听事件  
+      holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+      @Override       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+       if(isChecked){
+       //...          
+       }else{
+       //....          
+      }      
+     }  
+    });  
+ 
+ 
 2017-4-17  修复购物车选择购买商品时的一些bug,添加显示购物车待付款的金额, 添加支付时向后台发送请求
 
 2017-4-14  修复首页显示bug，添加完成交易的订单可以评论或追评的功能,添加PhotoView 浏览图片

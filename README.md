@@ -16,8 +16,9 @@
 ### 一些有趣的地方:
  * 在编写加载头像图片代码的时候，经常会出现OOM(out of memory) 导致程序崩掉。
    
-  解决方法: [封装了一个工具类](/app/src/main/java/com/example/helloworld/huaruanshopping/util/createBitmapUtil.java/)，在加载头像图片时利用 BitmapFactory.Options()的inSampleSize属性,先压缩图片的比例，再加载
+   解决方法: [封装了一个工具类](/app/src/main/java/com/example/helloworld/huaruanshopping/util/createBitmapUtil.java/)，在加载头像图片时利用                BitmapFactory.Options()的inSampleSize属性,先压缩图片的比例，再加载
 
+ 
 * 用了Sharepreference + gson 来存储地址。因为关联性不强，用SQlite有点大动作，而IO文件存储消耗性能。
   
 

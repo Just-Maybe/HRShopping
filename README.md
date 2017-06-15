@@ -25,13 +25,13 @@
    
        // 1、 在初始化CheckBox状态和设置状态变化监听事件之前，先把状态变化监听事件设置为null  ，
        holder.checkBox.setOnCheckedChangeListener(null);  
-       // 2、 然后设置CheckBox状态    
-       if(isChecked) {
-           holder.checkbox.setChecked(true);  
-       } else { 
-           holder.checkbox.setChecked(false);  
-       }  
-       // 3、 然后设置状态变化监听事件  
+       // 2、 然后设置CheckBox状态     
+       if(isChecked) { 
+           holder.checkbox.setChecked(true);   
+       } else {  
+           holder.checkbox.setChecked(false);   
+       } 
+       // 3、 然后设置状态变化监听事件 
       holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
           @Override
           public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

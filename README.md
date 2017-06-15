@@ -16,9 +16,10 @@
 ### 一些有趣的地方:
  * 在编写加载头像图片代码的时候，经常会出现OOM(out of memory) 导致程序崩掉。
    
-  解决方法: [封装了一个工具类](/app/src/main/java/com/example/helloworld/huaruanshopping/util/createBitmapUtil.java/)，在加载头像图片时利用 opts.inSampleSize属性,先压缩图片的比例，再加载
+  解决方法: [封装了一个工具类](/app/src/main/java/com/example/helloworld/huaruanshopping/util/createBitmapUtil.java/)，在加载头像图片时利用 BitmapFactory.Options()的inSampleSize属性,先压缩图片的比例，再加载
 
-<img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image8.png" width="33%" height="33%">  
+* 存储用户的地址，
+<img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image8.png" width="33%" height="33%">   
 
 2017-4-17  修复购物车选择购买商品时的一些bug,添加显示购物车待付款的金额, 添加支付时向后台发送请求
 

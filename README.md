@@ -7,8 +7,8 @@
 网络请求库: Retrofit + OkHttp
 
 
-<img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image8.png" width="30%" height="30%">
-<img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image2.jpg" width="30%" height="30%">
+<img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image8.png" width="30%" height="30%"> <img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image2.jpg" width="30%" height="30%">
+
 <img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image3.jpg" width="30%" height="30%">
 <img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image4.png" width="30%" height="30%">
 <img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image5.png" width="30%" height="30%">

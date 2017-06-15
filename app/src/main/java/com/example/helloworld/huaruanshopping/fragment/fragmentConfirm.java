@@ -45,4 +45,12 @@ public class fragmentConfirm extends Fragment {
 //        confirmRecyclerView.setAdapter(adapter);
         return view;
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(mList!=null){
+            mList.clear();
+        }
+    }
 }

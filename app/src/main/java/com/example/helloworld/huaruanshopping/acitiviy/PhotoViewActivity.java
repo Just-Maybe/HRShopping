@@ -95,4 +95,12 @@ public class PhotoViewActivity extends AppCompatActivity {
             container.removeView((View) object);
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (imageUrls != null) {
+            imageUrls.clear();
+        }
+    }
 }

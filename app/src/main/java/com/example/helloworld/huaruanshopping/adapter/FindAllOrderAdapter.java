@@ -16,10 +16,14 @@ import com.bumptech.glide.Glide;
 import com.example.helloworld.huaruanshopping.R;
 import com.example.helloworld.huaruanshopping.acitiviy.CommentActivity;
 import com.example.helloworld.huaruanshopping.acitiviy.FindAllOrderActivity;
+import com.example.helloworld.huaruanshopping.acitiviy.OrderActivity;
 import com.example.helloworld.huaruanshopping.api.HttpMethods;
+import com.example.helloworld.huaruanshopping.bean.CartBean;
+import com.example.helloworld.huaruanshopping.bean.OrderJsonBean;
 import com.example.helloworld.huaruanshopping.presenter.ActivityFindAllOrderPresenter;
 import com.example.helloworld.huaruanshopping.bean.orderList.DataBean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,6 +39,7 @@ public class FindAllOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private String token = "532a8a18b75079da0c48414014600600d64737f36e330997";
     private int id = 1;
     int num = 0;
+    private OrderJsonBean jsonBean = new OrderJsonBean();
 
     public FindAllOrderAdapter(Context context, List<DataBean> orderList) {
         mContext = context;
@@ -77,6 +82,16 @@ public class FindAllOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     cancelItem(position);
                 }
             });
+            ((OrderItem) holder).orderImmediately.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, OrderActivity.class);
+//                    transformData(position);
+                    intent.putExtra("jsonBean", orderList.get(position));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    mContext.startActivity(intent);
+                }
+            });
             DataBean.SorderSetBean Bean;
             for (int i = 0; i < orderList.get(position).getSorderSet().size(); i++) {
                 Bean = orderList.get(position).getSorderSet().get(i);
@@ -90,13 +105,16 @@ public class FindAllOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                             Bean.getProtype().getProduct().getName(),
                             Bean.getNumber(), Bean.getPrice(),
                             Bean.getProtype().getName(),
-                            Bean.getComm_flag()));
-                    Log.d(TAG, "onBindViewHolder: " + orderList.get(position).getStatus().getId());
+                            Bean.getComm_flag(),
+                            Bean.getId()
+                            ));
+//                    Log.d(TAG, "onBindViewHolder: " + orderList.get(position).getStatus().getId());
 //                    Log.d(TAG, "onBindViewHolder: " + num++);
                 }
             }
         }
     }
+
 
     /**
      * @param contentLayout 父布局
@@ -108,8 +126,8 @@ public class FindAllOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
      * @param getComm_flag  订单状态id
      * @return
      */
-    private View setItemView(ViewGroup contentLayout, String imgUrl, String Name, int Num, double Total, String sort, int getComm_flag) {
-        Log.d(TAG, "setItemView: " + getComm_flag);
+    private View setItemView(ViewGroup contentLayout, String imgUrl, String Name, int Num, double Total, String sort, final int getComm_flag, final int id) {
+//        Log.d(TAG, "setItemView: " + getComm_flag);
         View itemView = LayoutInflater.from(mContext).inflate(R.layout.order_item_layout, contentLayout, false);
         ImageView img = (ImageView) itemView.findViewById(R.id.orderItemImg);
         TextView itemName = (TextView) itemView.findViewById(R.id.orderItemName);
@@ -129,6 +147,8 @@ public class FindAllOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             public void onClick(View v) {
                 Intent intent = new Intent(mContext.getApplicationContext(), CommentActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("flag",getComm_flag);
+                intent.putExtra("id",id);
                 mContext.startActivity(intent);
             }
         });

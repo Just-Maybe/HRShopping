@@ -162,4 +162,12 @@ public class fragmentPageSortList extends Fragment implements SwipeRefreshLayout
             }
         }
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(mProductList!=null){
+            mProductList.clear();
+        }
+    }
 }

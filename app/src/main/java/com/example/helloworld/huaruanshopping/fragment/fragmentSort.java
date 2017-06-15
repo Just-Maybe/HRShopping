@@ -85,7 +85,6 @@ public class fragmentSort extends Fragment implements IFragmentSort {
     }
 
 
-
     @Override
     public void setCategoryText(List list) {
         if (!(mList.equals(list))) {
@@ -98,5 +97,16 @@ public class fragmentSort extends Fragment implements IFragmentSort {
         mTabLayoutAdapter = new TabLayoutAdapter(fm, mFragmentList, mList);
         mTabLayoutAdapter.notifyDataSetChanged();
         mViewPager.setAdapter(mTabLayoutAdapter);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mFragmentList != null) {
+            mFragmentList.clear();
+        }
+        if (mList != null) {
+            mList.clear();
+        }
     }
 }

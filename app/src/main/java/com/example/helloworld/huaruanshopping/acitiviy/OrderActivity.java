@@ -30,6 +30,7 @@ import com.example.helloworld.huaruanshopping.bean.ListAddress;
 import com.example.helloworld.huaruanshopping.bean.OrderJsonBean;
 import com.example.helloworld.huaruanshopping.bean.Product;
 import com.example.helloworld.huaruanshopping.bean.address;
+import com.example.helloworld.huaruanshopping.bean.orderList;
 import com.example.helloworld.huaruanshopping.presenter.ActivityOrderPresenter;
 import com.example.helloworld.huaruanshopping.presenter.implView.IActivityOrder;
 import com.example.helloworld.huaruanshopping.util.SharedPreferencesUtils;
@@ -61,10 +62,9 @@ public class OrderActivity extends AppCompatActivity implements IActivityOrder {
     private RecyclerView confirmRecyclerView;
     LinearLayoutManager layoutManager;
     ConfirmationAdapter adapter;
-    private List<Product> mList = new ArrayList<>();
     Gson gson = new Gson();
-    private OrderJsonBean jsonBean;
-    private List<CartBean.DataBean> cartList = new ArrayList<>();
+    private orderList.DataBean jsonBean;
+    private OrderJsonBean orderJson = new OrderJsonBean();
     private address address;
     private String addressStr;
     private String nameStr;
@@ -83,7 +83,7 @@ public class OrderActivity extends AppCompatActivity implements IActivityOrder {
         setContentView(R.layout.activity_order);
         ButterKnife.bind(this);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION); //透明导航栏
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION); //透明导航栏
         presenter = new ActivityOrderPresenter(this, this);
         initToolbar();
         initData();
@@ -146,7 +146,9 @@ public class OrderActivity extends AppCompatActivity implements IActivityOrder {
                 if (isInfoEmpty()) {
                     Snackbar.make(continueLayout, "还没有添加地址", Snackbar.LENGTH_SHORT).show();
                 } else {
-                    presenter.orderProducts(1, gson.toJson(jsonBean, OrderJsonBean.class), token, adapter.isZhifubao());
+//                    orderJson = jsonBean;
+                    presenter.transformJson(jsonBean, orderJson);
+                    presenter.orderProducts(1, gson.toJson(orderJson, OrderJsonBean.class), token, adapter.isZhifubao());
                 }
 //                presenter.pay(adapter.isZhifubao());
                 break;
@@ -185,7 +187,19 @@ public class OrderActivity extends AppCompatActivity implements IActivityOrder {
         Toast.makeText(this, "请安装支付宝客户端", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void orderResult(int result) {
+
+    }
+
     boolean isInfoEmpty() {
         return jsonBean.getAddress().equals("") || jsonBean.getPhone().equals("") || jsonBean.getName().equals("");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        jsonBean=null;
+        orderJson=null;
     }
 }

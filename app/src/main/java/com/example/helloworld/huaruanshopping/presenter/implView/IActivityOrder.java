@@ -8,5 +8,8 @@ public interface IActivityOrder {
     void showDialog(String messae);
 
     void hideDialog();
+
     void installZhifubaoTips();
+
+    void orderResult(int result);
 }

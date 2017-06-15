@@ -112,11 +112,13 @@ public class HomeRecylcerViewAdaper extends RecyclerView.Adapter<RecyclerView.Vi
                 });
     }
 
-    private ArrayList<String> transformPic(List<ProductBean.DataBean> productBeanList) {
+    private ArrayList<String> transformPic(ArrayList<ProductBean.DataBean> productBeanList) {
         ArrayList<String> listPics = new ArrayList<>();
-        List<ProductBean.DataBean> productList = productBeanList;
-        for (int i = 0; i < productList.size(); i++) {
-            listPics.add(HttpMethods.BASE_URL + productList.get(i).getProtypeSet().get(0).getPic());
+//        List<ProductBean.DataBean> productList = productBeanList;
+        Log.d(TAG, "transformPic: " + productBeanList.size());
+        for (int i = 0; i < productBeanList.size(); i++) {
+            Log.d(TAG, "transformPic: " + HttpMethods.BASE_URL + productBeanList.get(i).getProtypeSet().get(0).getPic());
+            listPics.add(HttpMethods.BASE_URL + productBeanList.get(i).getProtypeSet().get(0).getPic());
         }
         return listPics;
     }

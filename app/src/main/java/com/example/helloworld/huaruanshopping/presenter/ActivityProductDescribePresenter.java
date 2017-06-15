@@ -3,14 +3,10 @@ package com.example.helloworld.huaruanshopping.presenter;
 import android.util.Log;
 
 import com.example.helloworld.huaruanshopping.api.HttpMethods;
-import com.example.helloworld.huaruanshopping.bean.Comment;
 import com.example.helloworld.huaruanshopping.bean.ProductBean;
 import com.example.helloworld.huaruanshopping.bean.Response;
-import com.example.helloworld.huaruanshopping.bean.productDescribe;
 import com.example.helloworld.huaruanshopping.presenter.biz.IActivityProductDescribeBiz;
 import com.example.helloworld.huaruanshopping.presenter.implView.IActivityProductDescribe;
-
-import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;

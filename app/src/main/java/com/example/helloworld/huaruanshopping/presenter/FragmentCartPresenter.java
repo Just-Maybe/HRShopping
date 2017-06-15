@@ -5,6 +5,7 @@ import android.util.Log;
 import com.example.helloworld.huaruanshopping.api.HttpMethods;
 import com.example.helloworld.huaruanshopping.bean.CartBean;
 import com.example.helloworld.huaruanshopping.bean.Response;
+import com.example.helloworld.huaruanshopping.bean.orderList;
 import com.example.helloworld.huaruanshopping.presenter.biz.IFragmentCartBiz;
 import com.example.helloworld.huaruanshopping.presenter.implView.IFragmentCart;
 
@@ -47,6 +48,7 @@ public class FragmentCartPresenter implements IFragmentCartBiz {
 //                        listCart.getCart();
                         Log.d(TAG, "onNext: " + cartBean.getData().toString());
                         Log.d(TAG, "onNext: " + cartBean.getData().get(0).getProtype().getProduct().getPrice());
+//                        orderList.DataBean od= cartBean.getData();
                         iFragmentCart.getCartList(cartBean.getData());
                     }
 

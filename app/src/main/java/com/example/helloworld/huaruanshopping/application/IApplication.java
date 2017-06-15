@@ -1,7 +1,6 @@
 package com.example.helloworld.huaruanshopping.application;
 
 import android.app.Application;
-import android.util.Log;
 
 import com.example.helloworld.huaruanshopping.R;
 import com.example.helloworld.huaruanshopping.view.GlideGalleryfinalImageLoader;
@@ -30,7 +29,7 @@ public class IApplication extends Application {
 
     private void initGalleryFinal() {
         ThemeConfig theme = new ThemeConfig.Builder()
-                .setEditPhotoBgTexture(getResources().getDrawable(R.drawable.bg)).build();
+                .setEditPhotoBgTexture(getResources().getDrawable(R.drawable.business_bg)).build();
 //        //配置功能
         GlideGalleryfinalImageLoader imageLoader = new GlideGalleryfinalImageLoader();
         FunctionConfig functionConfig = new FunctionConfig.Builder()

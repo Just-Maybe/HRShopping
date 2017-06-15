@@ -151,4 +151,12 @@ public class fragmentaddAddress extends Fragment {
         listAddress = gson.fromJson(addressListGson, ListAddress.class);
         return (ArrayList) listAddress.getAddressList();
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (addressList != null) {
+            addressList.clear();
+        }
+    }
 }

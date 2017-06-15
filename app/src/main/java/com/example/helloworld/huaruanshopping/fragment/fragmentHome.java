@@ -138,13 +138,18 @@ public class fragmentHome extends Fragment implements SwipeRefreshLayout.OnRefre
         } else {
 //            mProductList = new ArrayList<>();
             mProductList = (ArrayList<ProductBean.DataBean>) saveFileUtil.readObject(getContext().getApplicationContext(), saveFileUtil.HomeData);
-            Log.d(TAG, "onRefresh: " + mProductList.size());
-            if (mProductList.size() > 0) {
-                adaper.setProductList(mProductList);
+//            Log.d(TAG, "onRefresh: " + mProductList.size());
+            if (mProductList != null) {
+                if (mProductList.size() > 0) {
+                    adaper.setProductList(mProductList);
 //                adaper.addMoreData(mProductList);
-                if (mRefreshLayout.isRefreshing()) {
-                    mRefreshLayout.setRefreshing(false);
+                    if (mRefreshLayout.isRefreshing()) {
+                        mRefreshLayout.setRefreshing(false);
+                    }
+                    Toast.makeText(getActivity(), "网络出问题了!", Toast.LENGTH_SHORT).show();
+                    adaper.setLoadStatus("没有网络");
                 }
+            } else {
                 Toast.makeText(getActivity(), "网络出问题了!", Toast.LENGTH_SHORT).show();
                 adaper.setLoadStatus("没有网络");
             }
@@ -178,7 +183,7 @@ public class fragmentHome extends Fragment implements SwipeRefreshLayout.OnRefre
             } else {
                 adaper.addMoreData(list);
             }
-            saveFileUtil.saveObject(getContext().getApplicationContext(), adaper.getProductList(), saveFileUtil.HomeData);
+            saveFileUtil.saveObject(getContext(), adaper.getProductList(), saveFileUtil.HomeData);
         }
     }
 
@@ -186,5 +191,13 @@ public class fragmentHome extends Fragment implements SwipeRefreshLayout.OnRefre
     public void onStop() {
         super.onStop();
 //        saveFileUtil.saveObject(getContext().getApplicationContext(), mProductList, saveFileUtil.HomeData);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mProductList != null) {
+            mProductList.clear();
+        }
     }
 }

@@ -4,7 +4,6 @@ import com.example.helloworld.huaruanshopping.bean.Comment;
 import com.example.helloworld.huaruanshopping.bean.CommentProduct;
 import com.example.helloworld.huaruanshopping.bean.ProductBean;
 import com.example.helloworld.huaruanshopping.bean.Response;
-import com.example.helloworld.huaruanshopping.bean.productDescribe;
 
 import java.util.List;
 
@@ -54,4 +53,14 @@ public interface ProductDescribeService {
 // /api/sorders/60?pid=1&uid=1
     @GET("api/sorders/60")
     Observable<CommentProduct> getCommentProduct(@Query("pid") int pid, @Query("uid") int uid);
+
+    //获取商铺新上市的商品
+    //    /api/businesses/new-products/{id}?pageNum=pageNum
+    @GET("/api/businesses/new-products/{id}")
+    Observable<ProductBean> getBusinessNewProducts(@Path("id") int id, @Query("pageNum") int pageNum);
+
+    //    /api/businesses/{id}?pageNum=pageNum
+    @GET("/api/businesses/{id}")
+    Observable<ProductBean> getBusinessAllProducts(@Path("id") int id, @Query("pageNum") int pageNum);
+
 }

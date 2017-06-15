@@ -106,6 +106,7 @@ public class ActivityCommentPresenter implements IActivityCommentBiz {
                     @Override
                     public void onNext(Response response) {
                         Log.d(TAG, "onNext: " + response.getMsg());
+                        iActivityComment.onSuccessPostComment();
                     }
 
                     @Override

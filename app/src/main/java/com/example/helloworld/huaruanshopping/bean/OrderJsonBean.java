@@ -1,17 +1,13 @@
 package com.example.helloworld.huaruanshopping.bean;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by helloworld on 2017/3/30.
  */
 
-public class OrderJsonBean implements Parcelable{
+public class OrderJsonBean {
+
 
     /**
      * name : sysho
@@ -25,7 +21,7 @@ public class OrderJsonBean implements Parcelable{
     private String address;
     private String remark;
     private String phone;
-    private List<CartBean.DataBean> cart;
+    private List<CartBean> cart;
 
     public String getName() {
         return name;
@@ -59,50 +55,139 @@ public class OrderJsonBean implements Parcelable{
         this.phone = phone;
     }
 
-    public List<CartBean.DataBean> getCart() {
+    public List<CartBean> getCart() {
         return cart;
     }
 
-    public void setCart(List<CartBean.DataBean> cart) {
+    public void setCart(List<CartBean> cart) {
         this.cart = cart;
     }
 
+    public static class CartBean {
+        /**
+         * id : 1
+         * number : 43
+         * protype : {"id":4,"name":"老坛酸菜","pic":"4.jpg","inventory":100,"product":{"id":2,"name":"方便面","price":23}}
+         */
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
+        private int id;
+        private int number;
+        private ProtypeBean protype;
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.name);
-        dest.writeString(this.address);
-        dest.writeString(this.remark);
-        dest.writeString(this.phone);
-        dest.writeList(this.cart);
-    }
-
-    public OrderJsonBean() {
-    }
-
-    protected OrderJsonBean(Parcel in) {
-        this.name = in.readString();
-        this.address = in.readString();
-        this.remark = in.readString();
-        this.phone = in.readString();
-        this.cart = new ArrayList<CartBean.DataBean>();
-        in.readList(this.cart, CartBean.DataBean.class.getClassLoader());
-    }
-
-    public static final Creator<OrderJsonBean> CREATOR = new Creator<OrderJsonBean>() {
-        @Override
-        public OrderJsonBean createFromParcel(Parcel source) {
-            return new OrderJsonBean(source);
+        public int getId() {
+            return id;
         }
 
-        @Override
-        public OrderJsonBean[] newArray(int size) {
-            return new OrderJsonBean[size];
+        public void setId(int id) {
+            this.id = id;
         }
-    };
+
+        public int getNumber() {
+            return number;
+        }
+
+        public void setNumber(int number) {
+            this.number = number;
+        }
+
+        public ProtypeBean getProtype() {
+            return protype;
+        }
+
+        public void setProtype(ProtypeBean protype) {
+            this.protype = protype;
+        }
+
+        public static class ProtypeBean {
+            /**
+             * id : 4
+             * name : 老坛酸菜
+             * pic : 4.jpg
+             * inventory : 100
+             * product : {"id":2,"name":"方便面","price":23}
+             */
+
+            private int id;
+            private String name;
+            private String pic;
+            private int inventory;
+            private ProductBean product;
+
+            public int getId() {
+                return id;
+            }
+
+            public void setId(int id) {
+                this.id = id;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
+
+            public String getPic() {
+                return pic;
+            }
+
+            public void setPic(String pic) {
+                this.pic = pic;
+            }
+
+            public int getInventory() {
+                return inventory;
+            }
+
+            public void setInventory(int inventory) {
+                this.inventory = inventory;
+            }
+
+            public ProductBean getProduct() {
+                return product;
+            }
+
+            public void setProduct(ProductBean product) {
+                this.product = product;
+            }
+
+            public static class ProductBean {
+                /**
+                 * id : 2
+                 * name : 方便面
+                 * price : 23
+                 */
+
+                private int id;
+                private String name;
+                private double price;
+
+                public int getId() {
+                    return id;
+                }
+
+                public void setId(int id) {
+                    this.id = id;
+                }
+
+                public String getName() {
+                    return name;
+                }
+
+                public void setName(String name) {
+                    this.name = name;
+                }
+
+                public double getPrice() {
+                    return price;
+                }
+
+                public void setPrice(double price) {
+                    this.price = price;
+                }
+            }
+        }
+    }
 }

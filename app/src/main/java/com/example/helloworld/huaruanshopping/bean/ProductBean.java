@@ -71,8 +71,18 @@ public class ProductBean {
         private String remark;
         @SerializedName("sales")
         private int sales;
-        @SerializedName("protypeSet")
+        @SerializedName("business")
+        private business business;
+        @SerializedName("protypeList")
         private ArrayList<ProtypeSetBean> protypeSet;
+
+        public business getBusiness() {
+            return business;
+        }
+
+        public void setBusiness(business business) {
+            this.business = business;
+        }
 
         public int getId() {
             return id;
@@ -120,6 +130,59 @@ public class ProductBean {
 
         public void setProtypeSet(ArrayList<ProtypeSetBean> protypeSet) {
             this.protypeSet = protypeSet;
+        }
+
+        public static class business {
+            @SerializedName("id")
+            private int id;
+            @SerializedName("name")
+            private String name;
+            @SerializedName("pic")
+            private String pic;
+            @SerializedName("followers")
+            private int followers;
+            @SerializedName("collectors")
+            private int collectors;
+
+            public int getId() {
+                return id;
+            }
+
+            public void setId(int id) {
+                this.id = id;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
+
+            public String getPic() {
+                return pic;
+            }
+
+            public void setPic(String pic) {
+                this.pic = pic;
+            }
+
+            public int getFollowers() {
+                return followers;
+            }
+
+            public void setFollowers(int followers) {
+                this.followers = followers;
+            }
+
+            public int getCollectors() {
+                return collectors;
+            }
+
+            public void setCollectors(int collectors) {
+                this.collectors = collectors;
+            }
         }
 
         public static class ProtypeSetBean implements Serializable {

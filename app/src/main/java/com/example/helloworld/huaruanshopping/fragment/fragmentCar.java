@@ -23,6 +23,7 @@ import com.example.helloworld.huaruanshopping.bean.CartBean;
 import com.example.helloworld.huaruanshopping.bean.ListAddress;
 import com.example.helloworld.huaruanshopping.bean.OrderJsonBean;
 import com.example.helloworld.huaruanshopping.bean.address;
+import com.example.helloworld.huaruanshopping.bean.orderList;
 import com.example.helloworld.huaruanshopping.presenter.FragmentCartPresenter;
 import com.example.helloworld.huaruanshopping.presenter.implView.IFragmentCart;
 import com.example.helloworld.huaruanshopping.util.DensityUtil;
@@ -44,7 +45,7 @@ public class fragmentCar extends Fragment implements IFragmentCart {
     TextView waitToPayTotal;
     private View view;
     private SwipeMenuListView swipeMenuListView;
-    private List<CartBean.DataBean> mProductList = new ArrayList<>();
+    private List<orderList.DataBean.SorderSetBean> mProductList = new ArrayList<>();
     private CarListAdatper adapter;
     private Button selectAll;
     private TextView orderBtn;
@@ -57,7 +58,7 @@ public class fragmentCar extends Fragment implements IFragmentCart {
     private String token = "532a8a18b75079da0c48414014600600d64737f36e330997";
     String jsonString = "{'name':'sysho','address':'清风阁','remark':'加两双筷子','phone':'123124325235','cart':[{'id':1,'number':43,'protype':{'id':4,'name':'老坛酸菜','pic':'4.jpg','inventory':100,'product':{'id':2,'name':'方便面','price':23}}},{'id':6,'number':3,'protype':{'id':4,'name':'烧烤味','pic':'4.jpg','inventory':50,'product':{'id':2,'name':'薯片','price':23}}}]}";
     Gson gson = new Gson();
-    private OrderJsonBean jsonBean;
+    private orderList.DataBean jsonBean;
 
     public static fragmentCar newInstance() {
         Bundle args = new Bundle();
@@ -182,7 +183,7 @@ public class fragmentCar extends Fragment implements IFragmentCart {
     }
 
     @Override
-    public void getCartList(List<CartBean.DataBean> cartBeanList) {
+    public void getCartList(List<orderList.DataBean.SorderSetBean> cartBeanList) {
         for (int i = 0; i < cartBeanList.size(); i++) {
             mProductList.add(cartBeanList.get(i));
         }
@@ -214,10 +215,10 @@ public class fragmentCar extends Fragment implements IFragmentCart {
     }
 
     private void initOrderJsonBean() {
-        jsonBean = new OrderJsonBean();
-        List<CartBean.DataBean> cartBeanList = new ArrayList<>();
+        jsonBean = new orderList.DataBean();
+        List<orderList.DataBean.SorderSetBean> cartBeanList = new ArrayList<>();
         cartBeanList = adapter.getOrderProduct();
-        jsonBean.setCart(cartBeanList);
+        jsonBean.setSorderSet(cartBeanList);
         address firstAddress = null;
         String addressListJson = (String) SharedPreferencesUtils.getParam(getActivity(), "addressList", "");
         if (!addressListJson.equals("")) {
@@ -231,5 +232,13 @@ public class fragmentCar extends Fragment implements IFragmentCart {
 
         }
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mProductList != null) {
+            mProductList.clear();
+        }
     }
 }

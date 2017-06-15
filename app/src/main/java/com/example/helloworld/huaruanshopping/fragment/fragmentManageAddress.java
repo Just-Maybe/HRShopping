@@ -93,4 +93,12 @@ public class fragmentManageAddress extends Fragment {
         super.onPause();
         Log.d(TAG, "onPause: ");
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (lists != null) {
+            lists.clear();
+        }
+    }
 }

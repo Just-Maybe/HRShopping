@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -61,7 +62,7 @@ public class ProductDescribeActivity extends FragmentActivity implements IActivi
     private QBadgeView qBadgeView;
     private FragmentManager fm;
     TabLayoutAdapter adapter;
-    private fragmentProductComment fragmentComment = new fragmentProductComment();
+    private fragmentProductComment fragmentComment;
     private fragmentProductDescribe fragmentDescribe;
     List<Fragment> fragmentList = new ArrayList<>();
     List<String> titleList = new ArrayList<>();
@@ -93,6 +94,7 @@ public class ProductDescribeActivity extends FragmentActivity implements IActivi
         }
     }
 
+
     public final MyHandler mHandler = new MyHandler(this);
 
 //    public Handler mHandler = new Handler() {
@@ -117,11 +119,18 @@ public class ProductDescribeActivity extends FragmentActivity implements IActivi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_describe);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); //
         ButterKnife.bind(this);
         presenter = new ActivityProductDescribePresenter(this);
         fm = getSupportFragmentManager();
         initData();
         initView();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume: ");
     }
 
     @OnClick({R.id.back, R.id.carBtn})
@@ -146,6 +155,7 @@ public class ProductDescribeActivity extends FragmentActivity implements IActivi
         titleList.add("详情");
         titleList.add("评论");
         fragmentDescribe = fragmentProductDescribe.newInstance(pid);
+        fragmentComment = new fragmentProductComment();
         fragmentList.add(fragmentDescribe);
         fragmentList.add(fragmentComment);
         adapter = new TabLayoutAdapter(fm, fragmentList, titleList);
@@ -163,6 +173,7 @@ public class ProductDescribeActivity extends FragmentActivity implements IActivi
             }
         });
     }
+
 
 
     @Override
@@ -197,5 +208,11 @@ public class ProductDescribeActivity extends FragmentActivity implements IActivi
         defaultnumber = 0;
         ptid = 0;
         mHandler.removeCallbacksAndMessages(null);
+        if (fragmentList != null) {
+            fragmentList.clear();
+        }
+        if (titleList != null) {
+            titleList.clear();
+        }
     }
 }

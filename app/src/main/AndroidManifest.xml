@@ -25,7 +25,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".acitiviy.ProductDescribeActivity" />
+        <activity
+            android:name=".acitiviy.ProductDescribeActivity"
+            android:launchMode="singleTop" />
         <activity android:name=".acitiviy.OrderActivity" />
         <activity android:name=".acitiviy.FindAllOrderActivity" />
         <activity android:name=".acitiviy.updateInfoActivity" />
@@ -35,6 +37,9 @@
         <activity android:name=".acitiviy.PayTestActivity" />
         <activity android:name="cn.bmob.pay.v3.act.PayAct" />
         <activity android:name=".acitiviy.PhotoViewActivity" />
+        <activity
+            android:name=".acitiviy.BusinessActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>

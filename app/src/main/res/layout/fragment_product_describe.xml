@@ -131,6 +131,68 @@
                 android:text="阿斯大声打阿登省阿斯顿阿斯大大声打阿斯大声阿斯声打是打算顿阿斯大大声打阿斯大声阿斯声打是打算打算顿阿斯大大声打阿斯大声阿斯声打是打算打算顿阿斯大大声打阿斯大声阿斯声打是打算打算顿阿斯大大声打阿斯大声阿斯声打是打算打算顿阿斯大大声打阿斯大声阿斯声打是打算打算顿阿斯大大声打阿斯大声阿斯声打是打算打算顿阿斯大大声打阿斯大声阿斯声打是打算打算顿阿斯大大声打阿斯大声阿斯声打是打算打算顿阿斯大大声打阿斯大声阿斯声打是打算打算顿阿斯大大声打阿斯大声阿斯声打是打算打算打算打算的阿斯"
                 android:textColor="@color/ColortabText"
                 android:textSize="14dp" />
+
+            <include
+                layout="@layout/confirm_divider"
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:layout_marginTop="20dp" />
+            <!--商品店铺-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp">
+
+                <ImageView
+                    android:id="@+id/businessPic"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/food3" />
+
+                <TextView
+                    android:id="@+id/businessName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_toRightOf="@+id/businessPic"
+                    android:text="商铺名称"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/allProductsBtn"
+                    android:layout_width="140dp"
+                    android:layout_height="42dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/business_btn_selector"
+                    android:gravity="center"
+                    android:text="全部商品" />
+
+                <TextView
+                    android:id="@+id/goToBusinessBtn"
+                    android:layout_width="140dp"
+                    android:layout_height="42dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/business_btn_selector"
+                    android:gravity="center"
+                    android:text="进入店铺" />
+            </RelativeLayout>
+
+            <include
+                layout="@layout/confirm_divider"
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:layout_marginTop="20dp" />
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>

@@ -23,6 +23,7 @@ import com.example.helloworld.huaruanshopping.api.CartAdapterPostData;
 import com.example.helloworld.huaruanshopping.api.HttpMethods;
 import com.example.helloworld.huaruanshopping.bean.CartBean;
 import com.example.helloworld.huaruanshopping.bean.ProductBean;
+import com.example.helloworld.huaruanshopping.bean.orderList;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,21 +36,21 @@ import java.util.List;
 public class CarListAdatper extends BaseAdapter {
     public Context context;
 
-    private List<CartBean.DataBean> mList;
+    private List<orderList.DataBean.SorderSetBean> mList;
     private static HashMap<Integer, Boolean> checkeds = null;
     private final static String TAG = "111";
     //    private ProgressDialog progressDialog;
     private List<Integer> mPtids = new ArrayList<>();
     private List<Integer> mNumbers = new ArrayList<>();
-    private List<CartBean.DataBean> selectedList = new ArrayList<>();
+    private List<orderList.DataBean.SorderSetBean> selectedList = new ArrayList<>();
     public List<Integer> num;
     private totalChangedListener listener;
 
-    public List<CartBean.DataBean> getmList() {
+    public List<orderList.DataBean.SorderSetBean> getmList() {
         return mList;
     }
 
-    public void setmList(List<CartBean.DataBean> mList) {
+    public void setmList(List<orderList.DataBean.SorderSetBean> mList) {
         this.mList = mList;
     }
 
@@ -75,11 +76,11 @@ public class CarListAdatper extends BaseAdapter {
     }
 
 
-    public List<CartBean.DataBean> getSelectedList() {
+    public List<orderList.DataBean.SorderSetBean> getSelectedList() {
         return selectedList;
     }
 
-    public void setSelectedList(List<CartBean.DataBean> selectedList) {
+    public void setSelectedList(List<orderList.DataBean.SorderSetBean> selectedList) {
         this.selectedList = selectedList;
     }
 
@@ -87,7 +88,7 @@ public class CarListAdatper extends BaseAdapter {
         CarListAdatper.checkeds = checkeds;
     }
 
-    public CarListAdatper(Context context, List<CartBean.DataBean> mList) {
+    public CarListAdatper(Context context, List<orderList.DataBean.SorderSetBean> mList) {
         this.context = context;
         this.mList = mList;
         checkeds = new HashMap<>();
@@ -264,7 +265,7 @@ public class CarListAdatper extends BaseAdapter {
         return convertView;
     }
 
-    public List<CartBean.DataBean> getOrderProduct() {
+    public List<orderList.DataBean.SorderSetBean> getOrderProduct() {
         selectedList.clear();
         for (int i = 0; i < mList.size(); i++) {
             Log.d(TAG, "getOrderProduct: " + i + "  " + checkeds.get(i));

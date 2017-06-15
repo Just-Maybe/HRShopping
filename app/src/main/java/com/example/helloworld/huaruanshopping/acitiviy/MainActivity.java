@@ -1,6 +1,7 @@
 package com.example.helloworld.huaruanshopping.acitiviy;
 
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,9 +23,6 @@ import com.example.helloworld.huaruanshopping.fragment.fragmentInfo;
 import com.example.helloworld.huaruanshopping.fragment.fragmentSort;
 import com.example.helloworld.huaruanshopping.util.MD5Util;
 
-import c.b.BP;
-import c.b.PListener;
-
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     FrameLayout mainContent;
@@ -35,14 +33,18 @@ public class MainActivity extends AppCompatActivity {
     RelativeLayout searchLayout;
     String jsonString = "{\"name\": \"sysho\",\"address\":\"清风阁\",\"remark\":\"加两双筷子\",\"phone\": \"123124325235\",\"cart\":[{\"id\":1,\"number\":43,\"protype\":{\"id\": 4,\"name\":\"老坛酸菜\",\"pic\":\"4.jpg\",\"inventory\":100,\"product\":{\"id\":2,\"name\":\"方便面\",\"price\": 23}}},{\"id\": 6,\"number\": 3,\"protype\":{\"id\": 3,\"name\":\"烧烤味\",\"pic\":\"4.jpg\",\"inventory\":50,\"product\":{\"id\": 2,\"name\":\"薯片\",\"price\": 23}}}]}";
     String TAG = "111";
+    fragmentHome fragmentHome;
+    fragmentSort fragmentSort;
+    fragmentCar fragmentCar;
+    fragmentInfo fragmentInfo;
     int pagePosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION); //透明导航栏
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); //状态栏与toolbar 同色
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION); //透明导航栏
         initToobar();
         mainContent = (FrameLayout) findViewById(R.id.main);
         fm = getSupportFragmentManager();
@@ -91,25 +93,25 @@ public class MainActivity extends AppCompatActivity {
             public void onTabSelected(int position) {
                 switch (position) {
                     case 0:
-                        fm.beginTransaction().replace(R.id.main, new fragmentHome()).commit();
+                        startFragment(fragmentHome,0);
                         toolbar.setVisibility(View.VISIBLE);
                         searchIcon.setVisibility(View.VISIBLE);
                         searchTv.setText("主页");
                         break;
                     case 1:
-                        fm.beginTransaction().replace(R.id.main, new fragmentSort()).commit();
+                        startFragment(fragmentSort,1);
                         toolbar.setVisibility(View.VISIBLE);
                         searchIcon.setVisibility(View.VISIBLE);
                         searchTv.setText("分类");
                         break;
                     case 2:
-                        fm.beginTransaction().replace(R.id.main, new fragmentCar()).commit();
+                        startFragment(fragmentCar,2);
                         toolbar.setVisibility(View.VISIBLE);
                         searchIcon.setVisibility(View.GONE);
                         searchTv.setText("购物车");
                         break;
                     case 3:
-                        fm.beginTransaction().replace(R.id.main, new fragmentInfo()).commit();
+                        startFragment(fragmentInfo,3);
                         toolbar.setVisibility(View.VISIBLE);
                         searchTv.setText("个人信息");
                         searchIcon.setVisibility(View.GONE);
@@ -128,6 +130,22 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void startFragment(Fragment fragment, int position) {
+        if (fragment == null) {
+            if (position == 0) {
+                fragment = new fragmentHome();
+            } else if (position == 1) {
+                fragment = new fragmentSort();
+            } else if (position == 2) {
+                fragment = new fragmentCar();
+            } else if (position == 3) {
+                fragment = new fragmentInfo();
+            }
+        }
+        fm.beginTransaction().replace(R.id.main, fragment).commit();
+
     }
 
     /**

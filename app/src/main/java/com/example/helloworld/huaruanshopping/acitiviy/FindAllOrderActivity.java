@@ -47,7 +47,7 @@ public class FindAllOrderActivity extends AppCompatActivity implements IActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.all_order_activity);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION); //透明导航栏
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION); //透明导航栏
         ButterKnife.bind(this);
         presenter = new ActivityFindAllOrderPresenter(this);
         setSupportActionBar(toolbar);
@@ -90,6 +90,15 @@ public class FindAllOrderActivity extends AppCompatActivity implements IActivity
             case R.id.back:
                 this.finish();
                 break;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (orderItemList != null) {
+            orderItemList.clear();
+            orderItemList = null;
         }
     }
 }

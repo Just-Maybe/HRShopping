@@ -1,6 +1,7 @@
 package com.example.helloworld.huaruanshopping.presenter.implView;
 
 import com.example.helloworld.huaruanshopping.bean.CartBean;
+import com.example.helloworld.huaruanshopping.bean.orderList;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  */
 
 public interface IFragmentCart {
-    void getCartList(List<CartBean.DataBean> cartBeanList);
+    void getCartList(List<orderList.DataBean.SorderSetBean> cartBeanList);
 //    void orderNow();
     void onOrderSuccess();
 }

@@ -38,8 +38,10 @@ public class FragmentCommentPresenter implements IFragmentCommentBiz {
 
                     @Override
                     public void onNext(Comment comment) {
-                        Log.d(TAG, "onNext: " + comment.getData().get(0).getComment());
-                        iFragmentComment.getComment(comment.getData());
+//                        Log.d(TAG, "onNext: " + comment.getData().get(0).getComment());
+                        if (comment.getData().size() > 0) {
+                            iFragmentComment.getComment(comment.getData());
+                        }
                     }
 
                     @Override

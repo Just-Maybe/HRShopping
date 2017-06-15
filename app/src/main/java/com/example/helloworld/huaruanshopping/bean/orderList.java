@@ -1,7 +1,11 @@
 package com.example.helloworld.huaruanshopping.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,7 +51,7 @@ public class orderList {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Parcelable{
         /**
          * id : 1487779951358
          * name : 爱爱
@@ -139,7 +143,7 @@ public class orderList {
             this.sorderSet = sorderSet;
         }
 
-        public static class StatusBean {
+        public static class StatusBean implements Parcelable{
             @SerializedName("id")
             private int id;
             @SerializedName("status")
@@ -160,9 +164,40 @@ public class orderList {
             public void setStatus(String status) {
                 this.status = status;
             }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeInt(this.id);
+                dest.writeString(this.status);
+            }
+
+            public StatusBean() {
+            }
+
+            protected StatusBean(Parcel in) {
+                this.id = in.readInt();
+                this.status = in.readString();
+            }
+
+            public static final Creator<StatusBean> CREATOR = new Creator<StatusBean>() {
+                @Override
+                public StatusBean createFromParcel(Parcel source) {
+                    return new StatusBean(source);
+                }
+
+                @Override
+                public StatusBean[] newArray(int size) {
+                    return new StatusBean[size];
+                }
+            };
         }
 
-        public static class SorderSetBean {
+        public static class SorderSetBean implements Parcelable{
             /**
              * id : 63
              * price : 989.0
@@ -221,7 +256,7 @@ public class orderList {
                 this.protype = protype;
             }
 
-            public static class ProtypeBean {
+            public static class ProtypeBean implements Parcelable{
                 /**
                  * id : 4
                  * name : 芥末味
@@ -280,7 +315,7 @@ public class orderList {
                     this.product = product;
                 }
 
-                public static class ProductBean {
+                public static class ProductBean implements Parcelable{
                     /**
                      * id : 2
                      * name : 小乐事薯片
@@ -338,8 +373,163 @@ public class orderList {
                     public void setSales(int sales) {
                         this.sales = sales;
                     }
+
+                    @Override
+                    public int describeContents() {
+                        return 0;
+                    }
+
+                    @Override
+                    public void writeToParcel(Parcel dest, int flags) {
+                        dest.writeInt(this.id);
+                        dest.writeString(this.name);
+                        dest.writeDouble(this.price);
+                        dest.writeString(this.remark);
+                        dest.writeInt(this.sales);
+                    }
+
+                    public ProductBean() {
+                    }
+
+                    protected ProductBean(Parcel in) {
+                        this.id = in.readInt();
+                        this.name = in.readString();
+                        this.price = in.readDouble();
+                        this.remark = in.readString();
+                        this.sales = in.readInt();
+                    }
+
+                    public static final Creator<ProductBean> CREATOR = new Creator<ProductBean>() {
+                        @Override
+                        public ProductBean createFromParcel(Parcel source) {
+                            return new ProductBean(source);
+                        }
+
+                        @Override
+                        public ProductBean[] newArray(int size) {
+                            return new ProductBean[size];
+                        }
+                    };
                 }
+
+                @Override
+                public int describeContents() {
+                    return 0;
+                }
+
+                @Override
+                public void writeToParcel(Parcel dest, int flags) {
+                    dest.writeInt(this.id);
+                    dest.writeString(this.name);
+                    dest.writeString(this.pic);
+                    dest.writeInt(this.inventory);
+                    dest.writeParcelable(this.product, flags);
+                }
+
+                public ProtypeBean() {
+                }
+
+                protected ProtypeBean(Parcel in) {
+                    this.id = in.readInt();
+                    this.name = in.readString();
+                    this.pic = in.readString();
+                    this.inventory = in.readInt();
+                    this.product = in.readParcelable(ProductBean.class.getClassLoader());
+                }
+
+                public static final Creator<ProtypeBean> CREATOR = new Creator<ProtypeBean>() {
+                    @Override
+                    public ProtypeBean createFromParcel(Parcel source) {
+                        return new ProtypeBean(source);
+                    }
+
+                    @Override
+                    public ProtypeBean[] newArray(int size) {
+                        return new ProtypeBean[size];
+                    }
+                };
             }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeInt(this.id);
+                dest.writeDouble(this.price);
+                dest.writeInt(this.number);
+                dest.writeInt(this.comm_flag);
+                dest.writeParcelable(this.protype, flags);
+            }
+
+            public SorderSetBean() {
+            }
+
+            protected SorderSetBean(Parcel in) {
+                this.id = in.readInt();
+                this.price = in.readDouble();
+                this.number = in.readInt();
+                this.comm_flag = in.readInt();
+                this.protype = in.readParcelable(ProtypeBean.class.getClassLoader());
+            }
+
+            public static final Creator<SorderSetBean> CREATOR = new Creator<SorderSetBean>() {
+                @Override
+                public SorderSetBean createFromParcel(Parcel source) {
+                    return new SorderSetBean(source);
+                }
+
+                @Override
+                public SorderSetBean[] newArray(int size) {
+                    return new SorderSetBean[size];
+                }
+            };
         }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(this.id);
+            dest.writeString(this.name);
+            dest.writeString(this.phone);
+            dest.writeString(this.remark);
+            dest.writeDouble(this.total);
+            dest.writeString(this.address);
+            dest.writeParcelable(this.status, flags);
+            dest.writeList(this.sorderSet);
+        }
+
+        public DataBean() {
+        }
+
+        protected DataBean(Parcel in) {
+            this.id = in.readString();
+            this.name = in.readString();
+            this.phone = in.readString();
+            this.remark = in.readString();
+            this.total = in.readDouble();
+            this.address = in.readString();
+            this.status = in.readParcelable(StatusBean.class.getClassLoader());
+            this.sorderSet = new ArrayList<SorderSetBean>();
+            in.readList(this.sorderSet, SorderSetBean.class.getClassLoader());
+        }
+
+        public static final Creator<DataBean> CREATOR = new Creator<DataBean>() {
+            @Override
+            public DataBean createFromParcel(Parcel source) {
+                return new DataBean(source);
+            }
+
+            @Override
+            public DataBean[] newArray(int size) {
+                return new DataBean[size];
+            }
+        };
     }
 }

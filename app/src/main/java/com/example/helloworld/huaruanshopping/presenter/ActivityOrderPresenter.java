@@ -12,15 +12,20 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.helloworld.huaruanshopping.acitiviy.FindAllOrderActivity;
 import com.example.helloworld.huaruanshopping.acitiviy.OrderActivity;
 import com.example.helloworld.huaruanshopping.api.HttpMethods;
+import com.example.helloworld.huaruanshopping.bean.OrderJsonBean;
 import com.example.helloworld.huaruanshopping.bean.Response;
+import com.example.helloworld.huaruanshopping.bean.orderList;
 import com.example.helloworld.huaruanshopping.presenter.biz.IActivityOrderBiz;
 import com.example.helloworld.huaruanshopping.presenter.implView.IActivityOrder;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import c.b.BP;
 import c.b.PListener;
@@ -45,6 +50,40 @@ public class ActivityOrderPresenter implements IActivityOrderBiz {
     public ActivityOrderPresenter(OrderActivity context, IActivityOrder iActivityOrder) {
         this.iActivityOrder = iActivityOrder;
         mContext = context;
+    }
+
+    public void transformJson(orderList.DataBean jsonBean, OrderJsonBean orderJson) {
+//        Log.d(TAG, "transformJson: "+jsonBean.getPhone()+jsonBean.getAddress()+jsonBean.getName());
+        List<OrderJsonBean.CartBean> list = new ArrayList<>();
+        OrderJsonBean.CartBean bean = new OrderJsonBean.CartBean();
+        OrderJsonBean.CartBean.ProtypeBean protype = new OrderJsonBean.CartBean.ProtypeBean();
+        OrderJsonBean.CartBean.ProtypeBean.ProductBean product = new OrderJsonBean.CartBean.ProtypeBean.ProductBean();
+//        CartBean.DataBean.ProtypeBean.ProductBean productBean = new CartBean.DataBean.ProtypeBean.ProductBean();
+        for (int i = 0; i < jsonBean.getSorderSet().size(); i++) {
+            product.setName(jsonBean.getSorderSet().get(i).getProtype().getProduct().getName());
+            product.setId(jsonBean.getSorderSet().get(i).getProtype().getProduct().getId());
+            product.setPrice(jsonBean.getSorderSet().get(i).getProtype().getProduct().getPrice());
+
+            protype.setPic(jsonBean.getSorderSet().get(i).getProtype().getPic());
+            protype.setId(jsonBean.getSorderSet().get(i).getProtype().getId());
+            protype.setName(jsonBean.getSorderSet().get(i).getProtype().getName());
+            protype.setInventory(jsonBean.getSorderSet().get(i).getProtype().getInventory());
+
+            bean.setId(jsonBean.getSorderSet().get(i).getId());
+            bean.setNumber(jsonBean.getSorderSet().get(i).getNumber());
+
+            protype.setProduct(product);
+            bean.setProtype(protype);
+            list.add(bean);
+            bean = new OrderJsonBean.CartBean();
+            protype = new OrderJsonBean.CartBean.ProtypeBean();
+            product = new OrderJsonBean.CartBean.ProtypeBean.ProductBean();
+        }
+        orderJson.setPhone(jsonBean.getPhone());
+        orderJson.setAddress(jsonBean.getAddress());
+        orderJson.setRemark(jsonBean.getRemark());
+        orderJson.setName(jsonBean.getName());
+        orderJson.setCart(list);
     }
 
     @Override
@@ -177,7 +216,7 @@ public class ActivityOrderPresenter implements IActivityOrderBiz {
                 // 此处应该保存订单号,比如保存进数据库等,以便以后查询
 //                order.setText(orderId);
 //                tv.append(name + "'s orderid is " + orderId + "\n\n");
-                orderResult(orderId, fId);
+//                orderResult(orderId, fId);
                 iActivityOrder.showDialog("获取订单成功!请等待跳转到支付页面~");
             }
 
@@ -197,10 +236,13 @@ public class ActivityOrderPresenter implements IActivityOrderBiz {
                 } else {
                     Toast.makeText(mContext.getApplicationContext(), "支付中断!", Toast.LENGTH_SHORT)
                             .show();
+//                    Intent intent = new Intent(mContext, FindAllOrderActivity.class);
+//                    mContext.startActivity(intent);
                 }
                 Log.d(TAG, "fail: " + "'s pay status is fail, error code is \n"
                         + code + " ,reason is " + reason + "\n\n");
                 iActivityOrder.hideDialog();
+
             }
         });
     }

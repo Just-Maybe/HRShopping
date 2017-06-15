@@ -2,7 +2,6 @@ package com.example.helloworld.huaruanshopping.fragment;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -18,15 +17,16 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.helloworld.huaruanshopping.R;
+import com.example.helloworld.huaruanshopping.acitiviy.BusinessActivity;
 import com.example.helloworld.huaruanshopping.acitiviy.PhotoViewActivity;
 import com.example.helloworld.huaruanshopping.acitiviy.ProductDescribeActivity;
 import com.example.helloworld.huaruanshopping.api.HttpMethods;
@@ -67,6 +67,14 @@ public class fragmentProductDescribe extends Fragment implements IActivityProduc
     ImageButton reduceBtn;
     @BindView(R.id.describeRemark)
     TextView describeRemark;
+    @BindView(R.id.businessPic)
+    ImageView businessPic;
+    @BindView(R.id.businessName)
+    TextView businessName;
+    @BindView(R.id.allProductsBtn)
+    TextView allProductsBtn;
+    @BindView(R.id.goToBusinessBtn)
+    TextView goToBusinessBtn;
     private ArrayList<String> mpicList = new ArrayList<>();
     private int defaultnumber = 2;
     ActivityProductDescribePresenter presenter;
@@ -79,6 +87,8 @@ public class fragmentProductDescribe extends Fragment implements IActivityProduc
     private QBadgeView qBadgeView;
     private View view;
     private Handler mHandler;
+    private String businessImgUrl;
+    private int fansNum;
 
     public static fragmentProductDescribe newInstance(int pid) {
 
@@ -114,7 +124,7 @@ public class fragmentProductDescribe extends Fragment implements IActivityProduc
         return view;
     }
 
-    @OnClick({R.id.addBtn, R.id.reduceBtn})
+    @OnClick({R.id.addBtn, R.id.reduceBtn, R.id.goToBusinessBtn, R.id.allProductsBtn})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.addBtn:
@@ -122,6 +132,18 @@ public class fragmentProductDescribe extends Fragment implements IActivityProduc
                 break;
             case R.id.reduceBtn:
                 reduceNum();
+                break;
+            case R.id.goToBusinessBtn:
+                Intent intent = new Intent(getActivity(), BusinessActivity.class);
+                intent.putExtra("imgUrl", businessImgUrl);
+                intent.putExtra("fansNum", fansNum);
+                startActivity(intent);
+                break;
+            case R.id.allProductsBtn:
+                Intent intent2 = new Intent(getActivity(), BusinessActivity.class);
+                intent2.putExtra("imgUrl", businessImgUrl);
+                intent2.putExtra("fansNum", fansNum);
+                startActivity(intent2);
                 break;
         }
     }
@@ -169,6 +191,10 @@ public class fragmentProductDescribe extends Fragment implements IActivityProduc
         initSort(productBean.getProtypeSet());
         setBannerPics(productBean.getProtypeSet());
         describeRemark.setText(productBean.getRemark());
+        businessName.setText(productBean.getBusiness().getName());
+        businessImgUrl = HttpMethods.BASE_URL + "img/" + productBean.getBusiness().getPic();
+        fansNum = productBean.getBusiness().getFollowers();
+        Glide.with(getActivity()).load(businessImgUrl).into(businessPic);
     }
 
     private void initSort(final List<ProductBean.DataBean.ProtypeSetBean> ListSort) {
@@ -244,4 +270,9 @@ public class fragmentProductDescribe extends Fragment implements IActivityProduc
 
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+//        null.unbind();
+    }
 }

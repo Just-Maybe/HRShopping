@@ -25,6 +25,7 @@ import com.example.helloworld.huaruanshopping.api.HttpMethods;
 import com.example.helloworld.huaruanshopping.bean.CartBean;
 import com.example.helloworld.huaruanshopping.bean.OrderJsonBean;
 import com.example.helloworld.huaruanshopping.bean.Product;
+import com.example.helloworld.huaruanshopping.bean.orderList;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.ArrayList;
@@ -41,9 +42,9 @@ public class ConfirmationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private static final int SHOPPINGTO = Integer.MAX_VALUE - 2;
     private static final int ORDER = Integer.MAX_VALUE - 3;
     private static final int COUNT = Integer.MAX_VALUE - 4;
-    private List<CartBean.DataBean> mList = new ArrayList<>();
+    private List<orderList.DataBean.SorderSetBean> mList = new ArrayList<>();
     private Context mContext;
-    OrderJsonBean jsonBean;
+    orderList.DataBean jsonBean;
     boolean isZhifubao = true;
 
     public boolean isZhifubao() {
@@ -55,9 +56,9 @@ public class ConfirmationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
 
-    public ConfirmationAdapter(OrderJsonBean jsonBean, Context Context) {
+    public ConfirmationAdapter(orderList.DataBean jsonBean, Context Context) {
         this.jsonBean = jsonBean;
-        this.mList = jsonBean.getCart();
+        this.mList = jsonBean.getSorderSet();
         this.mContext = Context;
         Log.d("11", "ConfirmationAdapter: " + mList.size());
     }

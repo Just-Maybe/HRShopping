@@ -37,7 +37,7 @@ public class CartBean implements Parcelable {
     @SerializedName("error_code")
     private String error_code;
     @SerializedName("data")
-    private List<DataBean> data;
+    private List<orderList.DataBean.SorderSetBean> data;
 
     public int getId() {
         return id;
@@ -79,11 +79,11 @@ public class CartBean implements Parcelable {
         this.error_code = error_code;
     }
 
-    public List<DataBean> getData() {
+    public List<orderList.DataBean.SorderSetBean> getData() {
         return data;
     }
 
-    public void setData(List<DataBean> data) {
+    public void setData(List<orderList.DataBean.SorderSetBean> data) {
         this.data = data;
     }
 
@@ -412,26 +412,26 @@ public class CartBean implements Parcelable {
             public ProtypeBean() {
             }
 
-            protected ProtypeBean(Parcel in) {
-                this.id = in.readInt();
-                this.name = in.readString();
-                this.pic = in.readString();
-                this.inventory = in.readInt();
-                this.product = in.readParcelable(ProductBean.class.getClassLoader());
+        protected ProtypeBean(Parcel in) {
+            this.id = in.readInt();
+            this.name = in.readString();
+            this.pic = in.readString();
+            this.inventory = in.readInt();
+            this.product = in.readParcelable(ProductBean.class.getClassLoader());
+        }
+
+        public static final Creator<ProtypeBean> CREATOR = new Creator<ProtypeBean>() {
+            @Override
+            public ProtypeBean createFromParcel(Parcel source) {
+                return new ProtypeBean(source);
             }
 
-            public static final Creator<ProtypeBean> CREATOR = new Creator<ProtypeBean>() {
-                @Override
-                public ProtypeBean createFromParcel(Parcel source) {
-                    return new ProtypeBean(source);
-                }
-
-                @Override
-                public ProtypeBean[] newArray(int size) {
-                    return new ProtypeBean[size];
-                }
-            };
-        }
+            @Override
+            public ProtypeBean[] newArray(int size) {
+                return new ProtypeBean[size];
+            }
+        };
+    }
 
         @Override
         public int describeContents() {
@@ -491,7 +491,7 @@ public class CartBean implements Parcelable {
         this.protype = in.readParcelable(ProtypeBean.class.getClassLoader());
         this.message = in.readString();
         this.error_code = in.readString();
-        this.data = new ArrayList<DataBean>();
+        this.data = new ArrayList<orderList.DataBean.SorderSetBean>();
         in.readList(this.data, DataBean.class.getClassLoader());
     }
 

@@ -22,23 +22,21 @@
 * 用了Sharepreference + gson 来存储地址。因为关联性不强，用SQlite有点大动作，而IO文件存储消耗性能。
   
 * 当ListView滚动时自动调用 onCheckedChanged 导致CheckBox 状态不停变化 的解决办法
+   
     //在初始化CheckBox状态和设置状态变化监听事件之前，先把状态变化监听事件设置为null  
     holder.checkBox.setOnCheckedChangeListener(null);  
     //然后设置CheckBox状态  
     if(isChecked) {
-        holder.checkbox.setChecked(true);  
-       } else {
-       holder.checkbox.setChecked(false);  
+         holder.checkbox.setChecked(true);  
+       } else { 
+         holder.checkbox.setChecked(false);  
        }  
        //然后设置状态变化监听事件  
       holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
       @Override       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-       if(isChecked){
-       //...          
-       }else{
-       //....          
-      }      
-     }  
+       
+       //....         
+
     });  
  
  

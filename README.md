@@ -6,7 +6,7 @@
 
 网络请求库: Retrofit + OkHttp
 
-
+![image](https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image1.jpg)
 
 
 2017-4-17  修复购物车选择购买商品时的一些bug,添加显示购物车待付款的金额, 添加支付时向后台发送请求

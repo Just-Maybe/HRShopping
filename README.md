@@ -2,10 +2,9 @@
 
 
 
-
-<img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image8.png" width="33%" height="33%">                   <img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image2.jpg" width="33%" height="33%"> 
-<img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image5.png" width="33%" height="33%">
-<img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image6.png" width="40%" height="33%">       <img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image7.png" width="35%" height="33%">
+<img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image2.jpg" width="33%" height="33%"> <img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image5.png" width="33%" height="33%"><img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image6.png" width="40%" height="33%">
+ 
+<img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image7.png" width="35%" height="33%">
 
 整体框架 : MVP
 
@@ -13,6 +12,8 @@
 
 网络请求库: Retrofit + OkHttp
 
+
+<img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image8.png" width="33%" height="33%">  
 
 2017-4-17  修复购物车选择购买商品时的一些bug,添加显示购物车待付款的金额, 添加支付时向后台发送请求
 

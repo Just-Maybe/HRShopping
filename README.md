@@ -2,7 +2,7 @@
 
 
 
-<img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image2.jpg" width="33%" height="33%"> <img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image5.png" width="33%" height="33%"> <img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image6.png" width="40%" height="33%">
+<img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image2.jpg" width="33%" height="33%"> <img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image5.png" width="33%" height="33%"> <img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image6.png" width="33%" height="33%">
  
   
 <img src="https://github.com/qqhahaboy/HRShopping/raw/master/app/images/image7.png" width="35%" height="33%">

@@ -23,7 +23,7 @@
   
 * 当ListView滚动时自动调用 onCheckedChanged 导致CheckBox 状态不停变化 的解决办法
    
-```  
+```Java </br>  
            // 1、 在初始化CheckBox状态和设置状态变化监听事件之前，先把状态变化监听事件设置为null  ，
            holder.checkBox.setOnCheckedChangeListener(null);  
            // 2、 然后设置CheckBox状态     
